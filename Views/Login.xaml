@@ -32,7 +32,18 @@
                 Text="ביטול"
                 WidthRequest="150" />
 
+            <Label Text="אין לך משתמש?" />
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="הרשם כאן"
+                TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-            </HorizontalStackLayout>
+
+        </HorizontalStackLayout>
         </VerticalStackLayout>
 </ContentPage>
