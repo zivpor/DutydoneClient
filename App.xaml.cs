@@ -5,12 +5,12 @@ namespace DutydoneClient
 {
     public partial class App : Application
     {
-        public App(LoginViewModel vm)
+        public App(RegisterViewModel vm)
         {
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new Login(vm);
+            MainPage = new Register(vm);
         }
     }
 }
