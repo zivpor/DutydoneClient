@@ -13,11 +13,13 @@
             <!--FontFamily="SweetHoney"-->
 
             <Entry
+                FontFamily="Yarden"
             Placeholder="הכנס שם"
             PlaceholderColor="LightGrey"/>
             <!--Text="{Binding UserName}"-->
 
             <Entry
+                FontFamily="Yarden"
             IsPassword="True"
             Placeholder="הכנס סיסמה"
             PlaceholderColor="LightGrey"/>

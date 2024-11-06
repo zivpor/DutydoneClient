@@ -24,12 +24,12 @@
                     Grid.Column="1"
                     Margin="15"
                     Text="שם משתמש"
-                    FontFamily="felix"/>
+                    FontFamily="Yarden"/>
 
                 <Entry
                     Grid.Column="0"
                     Placeholder="הקלד שם משתמש"
-                     FontFamily="felix"
+                     FontFamily="Yarden"
                     Text="{Binding Name}"
                      />
 
@@ -39,7 +39,9 @@
                     Margin="15"
                     HorizontalOptions="Center"
                     Text="{Binding User_Error}"
-                    TextColor="Red" />
+                    TextColor="Red"
+                    FontFamily="Yarden"
+                    />
 
 
                 <Label
@@ -48,14 +50,14 @@
                     Grid.Column="1"
                     Margin="15"
                     Text="אימייל"
-                     FontFamily="felix"/>
+                    FontFamily="Yarden"/>
 
                 <Entry
                     Grid.Row="3"
                     Grid.Column="0"
                     Keyboard="Email"
                     Placeholder="הקלד אימייל"
-                     FontFamily="felix"
+                     FontFamily="Yarden"
                      />
 
                 <Label
@@ -64,27 +66,27 @@
                     Grid.Column="1"
                     Margin="15"
                     Text="סיסמא"
-                     FontFamily="felix"/>
+                    FontFamily="Yarden"/>
                 <Entry
                     Grid.Row="4"
                     Grid.Column="0"
                     Keyboard="Chat"
                     Placeholder="הקלד סיסמא"
-                     FontFamily="felix"
+                     FontFamily="Yarden"
                      />
 
                 <Label
                     Grid.Row="5"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
-                    
+                    FontFamily="Yarden"
                     TextColor="red" />
                 
 
                 <Button
                     Grid.Row="10"
                     Grid.ColumnSpan="2"
-                     FontFamily="felix"
+                     FontFamily="Yarden"
                     
                     Text="המשך" />
 

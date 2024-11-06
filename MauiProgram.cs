@@ -16,6 +16,7 @@ namespace DutydoneClient
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Alloha.otf", "Alloha");
+                    fonts.AddFont("yarden-regular-alefalefalef.oft", "Yarden");
                 });
             builder.Services.AddSingleton<Login>();
             builder.Services.AddSingleton<LoginViewModel>();
