@@ -72,16 +72,19 @@
                     Grid.Column="0"
                     Keyboard="Chat"
                     Placeholder="הקלד סיסמא"
+                     Text="{Binding Password}"
                      FontFamily="Yarden"
                      />
 
                 <Label
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
-                    FontFamily="Yarden"
+                    Text="{Binding Password_Error}"
+                    FontFamily="felix"
                     TextColor="red" />
-                
+
+
 
                 <Button
                     Grid.Row="10"

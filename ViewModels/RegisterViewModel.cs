@@ -50,4 +50,67 @@ public class RegisterViewModel : ViewModelBase
             OnPropertyChanged(nameof(User_Error));
         }
     }
+    public string? Password
+    {
+        get { return password; }
+        set
+        {
+            password = value;
+            Password_Error = "";
+            OnPropertyChanged(nameof(Password));
+            OnPropertyChanged(nameof(User_Error));
+            if (string.IsNullOrEmpty(password))
+            {
+                Password_Error = ""; // ????? ?????? ?? ???? ??º
+            }
+            else
+            {
+                if (password != null)
+                {
+                    bool IsPasswordOk = IsValidPassword(password);
+                    if (!IsPasswordOk)
+                    {
+                        Password_Error = "!!????? ????? ????? ????? ??? ????? ??? ?????!!";
+                    }
+                }
+            }
+        }
+    }
+
+    private bool IsValidPassword(string password)
+    {
+        bool hasUpperCase = false;
+        bool hasDigit = false;
+
+        foreach (char c in password)
+        {
+            if (char.IsUpper(c))
+            {
+                hasUpperCase = true;
+            }
+            if (char.IsDigit(c))
+            {
+                hasDigit = true;
+            }
+
+            if (hasUpperCase && hasDigit)
+            {
+                break; // ?? ????? ??? ?? ??? ????? ??? ????, ???? ????? ?? ??????
+            }
+        }
+        return hasUpperCase && hasDigit;
+
+    }
+
+    public string Password_Error
+    {
+        get { return password_error; }
+        set
+        {
+            password_error = value;
+            OnPropertyChanged(nameof(Password_Error));
+            //OnPropertyChanged(nameof(CanRegister));
+        }
+    }
+
 }
