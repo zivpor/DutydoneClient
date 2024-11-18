@@ -23,8 +23,8 @@
                     x:Name="name_lbl"
                     Grid.Column="1"
                     Margin="15"
-                    Text="שם משתמש"
-                    FontFamily="Yarden"/>
+                    Text="username"
+                    FontFamily="SM"/>
 
                 <Entry
                     Grid.Column="0"

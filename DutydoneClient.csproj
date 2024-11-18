@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Alloha.otf" />
+	  <None Remove="Resources\Fonts\Super Magnum.otf" />
 	  <None Remove="Resources\Fonts\yarden-regular-alefalefalef.otf" />
 	</ItemGroup>
 
