@@ -15,4 +15,26 @@ public class ViewModelBase : INotifyPropertyChanged
     }
 
     #endregion
+    private bool inServerCall;
+    public bool InServerCall
+    {
+        get
+        {
+            return this.inServerCall;
+        }
+        set
+        {
+            this.inServerCall = value;
+            OnPropertyChanged("NotInServerCall");
+            OnPropertyChanged("InServerCall");
+        }
+    }
+
+    public bool NotInServerCall
+    {
+        get
+        {
+            return !this.InServerCall;
+        }
+    }
 }
