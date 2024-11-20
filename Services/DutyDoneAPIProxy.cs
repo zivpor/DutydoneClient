@@ -1,7 +1,9 @@
-﻿using System;
+﻿using DutydoneClient.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DutydoneClient.Services
@@ -21,6 +23,39 @@ namespace DutydoneClient.Services
 
             this.client = new HttpClient(handler);
             this.baseUrl = BaseAddress;
+        }
+        public async Task<User?> LoginAsync(LoginInfo userInfo)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}login";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(userInfo);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 

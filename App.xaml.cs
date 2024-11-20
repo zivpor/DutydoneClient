@@ -1,16 +1,21 @@
-﻿using DutydoneClient.ViewModels;
+﻿using DutydoneClient.Services;
+using DutydoneClient.ViewModels;
 using DutydoneClient.Views;
 
 namespace DutydoneClient
 {
     public partial class App : Application
     {
-        public App(RegisterViewModel vm)
+        public App? LoggedInUser { get; set; }
+        private DutyDoneAPIProxy proxy;
+        public App(IServiceProvider serviceProvider, DutyDoneAPIProxy proxy)
         {
+            this.proxy = proxy;
             InitializeComponent();
-
-            //MainPage = new AppShell();
-            MainPage = new Register(vm);
+            LoggedInUser = null;
+            
+            //Start with the Login View
+            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
     }
 }
