@@ -13,33 +13,37 @@
             <!--FontFamily="SweetHoney"-->
 
             <Entry
-                FontFamily="Yarden"
-            Placeholder="הכנס שם"
+                FontFamily="SM"
+            Placeholder="enter username"
             PlaceholderColor="LightGrey"/>
             <!--Text="{Binding UserName}"-->
 
             <Entry
-                FontFamily="Yarden"
+                FontFamily="SM"
             IsPassword="True"
-            Placeholder="הכנס סיסמה"
+            Placeholder="enter password"
             PlaceholderColor="LightGrey"/>
             <!--Text="{Binding Password}"-->
 
             <HorizontalStackLayout>
                 <Button
-                
-                Text="התחבר"
+                                FontFamily="SM"
+
+                Text="Login"
                 WidthRequest="150" />
                 <Button
-                
-                Text="ביטול"
+                                FontFamily="SM"
+
+                Text="cancel"
                 WidthRequest="150" />
 
-            <Label Text="אין לך משתמש?" />
+            <Label Text="NO USER?" />
             <Label
                 FontAttributes="Bold"
+                                FontFamily="SM"
+
                 HorizontalOptions="Center"
-                Text="הרשם כאן"
+                Text="SIGN HERE"
                 TextColor="Blue">
                
             </Label>

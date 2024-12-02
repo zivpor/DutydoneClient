@@ -1,4 +1,5 @@
-﻿using DutydoneClient.ViewModels;
+﻿using DutydoneClient.Services;
+using DutydoneClient.ViewModels;
 using DutydoneClient.Views;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,7 @@ namespace DutydoneClient
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<Register>();
             builder.Services.AddSingleton<RegisterViewModel>();
+            builder.Services.AddSingleton<DutyDoneAPIProxy>();
 
 
 #if DEBUG

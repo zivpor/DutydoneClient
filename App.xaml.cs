@@ -1,4 +1,5 @@
-﻿using DutydoneClient.Services;
+﻿using DutydoneClient.Models;
+using DutydoneClient.Services;
 using DutydoneClient.ViewModels;
 using DutydoneClient.Views;
 
@@ -6,7 +7,7 @@ namespace DutydoneClient
 {
     public partial class App : Application
     {
-        public App? LoggedInUser { get; set; }
+        public User? LoggedInUser { get; set; }
         private DutyDoneAPIProxy proxy;
         public App(IServiceProvider serviceProvider, DutyDoneAPIProxy proxy)
         {
@@ -15,7 +16,7 @@ namespace DutydoneClient
             LoggedInUser = null;
             
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<Login>());
         }
     }
 }

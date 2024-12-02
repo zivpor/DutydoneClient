@@ -21,15 +21,15 @@
 
                 <Label
                     x:Name="name_lbl"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="15"
-                    Text="username"
+                    Text="Username"
                     FontFamily="SM"/>
 
                 <Entry
-                    Grid.Column="0"
-                    Placeholder="הקלד שם משתמש"
-                     FontFamily="Yarden"
+                    Grid.Column="1"
+                    Placeholder="enter usermane"
+                     FontFamily="SM"
                     Text="{Binding Name}"
                      />
 
@@ -40,40 +40,40 @@
                     HorizontalOptions="Center"
                     Text="{Binding User_Error}"
                     TextColor="Red"
-                    FontFamily="Yarden"
+                    FontFamily="SM"
                     />
 
 
                 <Label
                     x:Name="email_lbl"
                     Grid.Row="3"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="15"
-                    Text="אימייל"
-                    FontFamily="Yarden"/>
+                    Text="Email"
+                    FontFamily="SM"/>
 
                 <Entry
                     Grid.Row="3"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Keyboard="Email"
-                    Placeholder="הקלד אימייל"
-                     FontFamily="Yarden"
+                    Placeholder="enter username"
+                     FontFamily="SM"
                      />
 
                 <Label
                     x:Name="password_lbl"
                     Grid.Row="4"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="15"
-                    Text="סיסמא"
-                    FontFamily="Yarden"/>
+                    Text="Password"
+                    FontFamily="SM"/>
                 <Entry
                     Grid.Row="4"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Keyboard="Chat"
-                    Placeholder="הקלד סיסמא"
+                    Placeholder="enter password"
                      Text="{Binding Password}"
-                     FontFamily="Yarden"
+                     FontFamily="SM"
                      />
 
                 <Label
@@ -81,7 +81,7 @@
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
                     Text="{Binding Password_Error}"
-                    FontFamily="felix"
+                    FontFamily="SM"
                     TextColor="red" />
 
 
@@ -89,9 +89,9 @@
                 <Button
                     Grid.Row="10"
                     Grid.ColumnSpan="2"
-                     FontFamily="Yarden"
+                     FontFamily="SM"
                     
-                    Text="המשך" />
+                    Text="Continue" />
 
             </Grid>
 
