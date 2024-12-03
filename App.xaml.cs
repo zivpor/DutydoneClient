@@ -16,7 +16,7 @@ namespace DutydoneClient
             LoggedInUser = null;
             
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<Login>());
+            MainPage = new NavigationPage(serviceProvider.GetService<Register>());
         }
     }
 }

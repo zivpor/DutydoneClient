@@ -4,98 +4,74 @@
              x:Class="DutydoneClient.Views.Register"
              Title="Register">
     <StackLayout VerticalOptions="FillAndExpand">
-
-        <Label
-        FontSize="50"
-        HorizontalOptions="Center"
-        Text="Register page"
-        TextColor="LightPink"
-        FontFamily="Alloha"/>
-
-        <ScrollView
-            HorizontalScrollBarVisibility="Always"
-            VerticalOptions="FillAndExpand"
-            VerticalScrollBarVisibility="Always">
-
-            <Grid ColumnDefinitions="*,1.5*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
-
-                <Label
-                    x:Name="name_lbl"
-                    Grid.Column="0"
-                    Margin="15"
-                    Text="Username"
-                    FontFamily="SM"/>
-
-                <Entry
-                    Grid.Column="1"
-                    Placeholder="enter usermane"
-                     FontFamily="SM"
-                    Text="{Binding Name}"
-                     />
-
-                <Label
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    Margin="15"
-                    HorizontalOptions="Center"
-                    Text="{Binding User_Error}"
-                    TextColor="Red"
-                    FontFamily="SM"
-                    />
+        <Label 
+            FontSize="60"
+            HorizontalOptions="Center"
+            Text="Register page"
+            TextColor="Lavender"
+            FontFamily="Alloha"/>
+        <Grid>
 
 
-                <Label
-                    x:Name="email_lbl"
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Margin="15"
-                    Text="Email"
-                    FontFamily="SM"/>
+        <!-- Main Content -->
+        <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+           
+            <!-- User Name -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="User Name" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <Entry Placeholder="Type First Name" Text="{Binding Name}" Style="{StaticResource entryStyle}" />
 
-                <Entry
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Keyboard="Email"
-                    Placeholder="enter username"
-                     FontFamily="SM"
-                     />
+           
+            <!-- Email -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Email" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <Entry Placeholder="Type Email" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
 
-                <Label
-                    x:Name="password_lbl"
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Margin="15"
-                    Text="Password"
-                    FontFamily="SM"/>
-                <Entry
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Keyboard="Chat"
-                    Placeholder="enter password"
-                     Text="{Binding Password}"
-                     FontFamily="SM"
-                     />
-
-                <Label
-                    Grid.Row="6"
-                    Grid.ColumnSpan="2"
-                    HorizontalOptions="Center"
-                    Text="{Binding Password_Error}"
-                    FontFamily="SM"
-                    TextColor="red" />
-
-
-
-                <Button
-                    Grid.Row="10"
-                    Grid.ColumnSpan="2"
-                     FontFamily="SM"
-                    
-                    Text="Continue" />
-
+            <!-- Password -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Password" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />
+                <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />
             </Grid>
 
-        </ScrollView>
+            <!-- Register and Cancel Buttons -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
+                <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
+            </Grid>
+        </VerticalStackLayout>
+        <!-- Centered ActivityIndicator -->
+        <ActivityIndicator IsRunning="{Binding InServerCall}" 
+                   Color="Red" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
+    </Grid>
     </StackLayout>
-
 </ContentPage>
