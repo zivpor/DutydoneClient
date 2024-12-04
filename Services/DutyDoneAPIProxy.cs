@@ -27,7 +27,7 @@ namespace DutydoneClient.Services
         public async Task<User?> LoginAsync(LoginInfo userInfo)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}login";
+            string url = $"{this.baseUrl}Login";
             try
             {
                 //Call the server API
@@ -60,7 +60,7 @@ namespace DutydoneClient.Services
         public async Task<User?> Register(User user)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}Register";
             try
             {
                 //Call the server API

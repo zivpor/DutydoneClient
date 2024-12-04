@@ -9,14 +9,14 @@ namespace DutydoneClient
     {
         public User? LoggedInUser { get; set; }
         private DutyDoneAPIProxy proxy;
-        public App(IServiceProvider serviceProvider, DutyDoneAPIProxy proxy)
+        public App(IServiceProvider serviceProvider)
         {
-            this.proxy = proxy;
+            
             InitializeComponent();
-            LoggedInUser = null;
+            Login? v = serviceProvider.GetService<Login>();
             
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<Register>());
+            MainPage = new NavigationPage(v);
         }
     }
 }

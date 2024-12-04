@@ -28,7 +28,7 @@ public class LoginViewModel : ViewModelBase
     public ICommand LoginCommand { get; set; }
     public ICommand RegisterCommand { get; }
     private string username;
-    public string Username
+    public string UserName
     {
         get => username;
         set
@@ -76,7 +76,7 @@ public class LoginViewModel : ViewModelBase
         InServerCall = true;
         ErrorMsg = "";
         //Call the server to login
-        LoginInfo loginInfo = new LoginInfo { Username = Username, Password = Password };
+        LoginInfo loginInfo = new LoginInfo { Username=UserName , Password = Password };
         User? u = await this.proxy.LoginAsync(loginInfo);
 
         InServerCall = false;
@@ -85,25 +85,23 @@ public class LoginViewModel : ViewModelBase
         ((App)Application.Current).LoggedInUser = u;
         if (u == null)
         {
-            ErrorMsg = "Invalid email or password";
+            ErrorMsg = "Invalid username or password";
         }
         else
         {
             ErrorMsg = "";
             //Navigate to the main page
             AppShell shell = serviceProvider.GetService<AppShell>();
-           
             
             ((App)Application.Current).MainPage = shell;
             Shell.Current.FlyoutIsPresented = false; //close the flyout
-            Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+           
         }
-
     }
     private void OnRegister()
     {
         ErrorMsg = "";
-        Username = "";
+        UserName = "";
         Password = "";
         // Navigate to the Register View page
         ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());

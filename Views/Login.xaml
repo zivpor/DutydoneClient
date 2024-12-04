@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
              x:Class="DutydoneClient.Views.Login"
-             Title="Login">
+             Title="Login"
+             x:DataType="viewmodel:LoginViewModel">
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
             <Label
-            FontSize="50"
+            FontSize="60"
             HorizontalOptions="Center"
             Text="Login page"
             TextColor="LightBlue"
@@ -15,40 +17,44 @@
             <Entry
                 FontFamily="SM"
             Placeholder="enter username"
-            PlaceholderColor="LightGrey"/>
-            <!--Text="{Binding UserName}"-->
+            PlaceholderColor="LightGrey"
+            Text="{Binding UserName}"/>
 
             <Entry
                 FontFamily="SM"
             IsPassword="True"
             Placeholder="enter password"
-            PlaceholderColor="LightGrey"/>
-            <!--Text="{Binding Password}"-->
+            PlaceholderColor="LightGrey"
+            Text="{Binding Password}"/>
 
             <HorizontalStackLayout>
                 <Button
-                                FontFamily="SM"
-
+                FontFamily="SM"
                 Text="Login"
-                WidthRequest="150" />
+                WidthRequest="150"
+                Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
                 <Button
                                 FontFamily="SM"
 
                 Text="cancel"
                 WidthRequest="150" />
 
-            <Label Text="NO USER?" />
-            <Label
-                FontAttributes="Bold"
-                                FontFamily="SM"
-
-                HorizontalOptions="Center"
-                Text="SIGN HERE"
-                TextColor="Blue">
-               
-            </Label>
-
+            
 
         </HorizontalStackLayout>
-        </VerticalStackLayout>
+        <Label 
+            Text="NO USER?"
+            FontFamily="SM"
+            HorizontalOptions="Center"/>
+        <Label 
+        Text="SIGN HERE"
+        TextColor="Blue"
+        HorizontalOptions="Center"
+        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+    </VerticalStackLayout>
 </ContentPage>

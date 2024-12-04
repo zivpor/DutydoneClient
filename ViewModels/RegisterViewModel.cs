@@ -12,12 +12,8 @@ public class RegisterViewModel : ViewModelBase
         RegisterCommand = new Command(OnRegister);
         CancelCommand = new Command(OnCancel);
         ShowPasswordCommand = new Command(OnShowPassword);
-        
-        
-        
         IsPassword = true;
         NameError = "Name is required";
-        
         EmailError = "Email is required";
         PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
     }
@@ -224,7 +220,6 @@ public class RegisterViewModel : ViewModelBase
             var newUser = new User
             {
                 Username = Name,
-               
                 Email = Email,
                 UserPassword = Password,
                 
