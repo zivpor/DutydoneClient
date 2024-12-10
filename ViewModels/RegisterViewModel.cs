@@ -227,15 +227,15 @@ public class RegisterViewModel : ViewModelBase
 
             //Call the Register method on the proxy to register the new user
             InServerCall = true;
-            newUser = await proxy.Register(newUser);
+            int? userId = await proxy.Register(newUser);
             InServerCall = false;
 
             //If the registration was successful, navigate to the login page
-            if (newUser != null)
+            if (userId != null)
             {
                 
                 InServerCall = false;
-
+                newUser.UserId = userId.Value;
                 ((App)(Application.Current)).MainPage.Navigation.PopAsync();
             }
             else

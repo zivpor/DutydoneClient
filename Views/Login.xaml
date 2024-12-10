@@ -16,9 +16,9 @@
 
             <Entry
                 FontFamily="SM"
-            Placeholder="enter username"
+            Placeholder="enter email"
             PlaceholderColor="LightGrey"
-            Text="{Binding UserName}"/>
+            Text="{Binding Email}"/>
 
             <Entry
                 FontFamily="SM"

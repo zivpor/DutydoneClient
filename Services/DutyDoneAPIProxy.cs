@@ -57,7 +57,7 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
-        public async Task<User?> Register(User user)
+        public async Task<int?> Register(User user)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}Register";
@@ -77,7 +77,7 @@ namespace DutydoneClient.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
+                    int? result = JsonSerializer.Deserialize<int>(resContent, options);
                     return result;
                 }
                 else

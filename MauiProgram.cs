@@ -20,10 +20,11 @@ namespace DutydoneClient
                     fonts.AddFont("yarden-regular-alefalefalef.oft", "Yarden");
                     fonts.AddFont("Super Magnum.otf", "SM");
                 });
-            builder.Services.AddSingleton<Login>();
-            builder.Services.AddSingleton<LoginViewModel>();
-            builder.Services.AddSingleton<Register>();
-            builder.Services.AddSingleton<RegisterViewModel>();
+            builder.Services.AddTransient<Login>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<Register>();
+            builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<AppShell>();
             builder.Services.AddSingleton<DutyDoneAPIProxy>();
 
 

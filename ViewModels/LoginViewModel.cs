@@ -19,7 +19,7 @@ public class LoginViewModel : ViewModelBase
         this.proxy = proxy;
         LoginCommand = new Command(OnLogin);
         RegisterCommand = new Command(OnRegister);
-        username = "";
+        email = "";
         password = "";
         InServerCall = false;
         errorMsg = "";
@@ -27,15 +27,15 @@ public class LoginViewModel : ViewModelBase
 
     public ICommand LoginCommand { get; set; }
     public ICommand RegisterCommand { get; }
-    private string username;
-    public string UserName
+    private string email;
+    public string Email
     {
-        get => username;
+        get => email;
         set
         {
-            if (username != value)
+            if (email != value)
             {
-                username = value;
+                email = value;
                 OnPropertyChanged(nameof(Email));
                 // can add more logic here like email validation etc.
                 // can add error message property and set it here
@@ -76,7 +76,7 @@ public class LoginViewModel : ViewModelBase
         InServerCall = true;
         ErrorMsg = "";
         //Call the server to login
-        LoginInfo loginInfo = new LoginInfo { Username=UserName , Password = Password };
+        LoginInfo loginInfo = new LoginInfo { Email=Email , Password = Password };
         User? u = await this.proxy.LoginAsync(loginInfo);
 
         InServerCall = false;
@@ -85,7 +85,7 @@ public class LoginViewModel : ViewModelBase
         ((App)Application.Current).LoggedInUser = u;
         if (u == null)
         {
-            ErrorMsg = "Invalid username or password";
+            ErrorMsg = "Invalid email or password";
         }
         else
         {
@@ -101,7 +101,7 @@ public class LoginViewModel : ViewModelBase
     private void OnRegister()
     {
         ErrorMsg = "";
-        UserName = "";
+        Email = "";
         Password = "";
         // Navigate to the Register View page
         ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());
