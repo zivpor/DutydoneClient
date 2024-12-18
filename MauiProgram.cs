@@ -25,6 +25,7 @@ namespace DutydoneClient
             builder.Services.AddTransient<Register>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddSingleton<DutyDoneAPIProxy>();
 
 

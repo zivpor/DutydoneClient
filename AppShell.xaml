@@ -4,12 +4,34 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DutydoneClient"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:views="clr-namespace:DutydoneClient.Views"
+    Shell.FlyoutBehavior="Flyout"
     Title="DutydoneClient">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+        <ShellContent 
+            Title="Calender" Icon="calender2.jpg"
+            ContentTemplate="{DataTemplate views:Calender}"
+            Route="Calender"/>
+        <ShellContent
+            Title="Tasks" Icon="list.png"
+            ContentTemplate="{DataTemplate views:TasksList}"
+            Route="Tasks" />
+        <ShellContent
+            Title="Groups" Icon="groups.png"
+            ContentTemplate="{DataTemplate views:Groups}"
+            Route="Groups" />
+        <ShellContent
+            Title="Home" Icon="home.png"
+            ContentTemplate="{DataTemplate views:HomePage}"
+            Route="Home" />
+        <ShellContent IsVisible="{Binding IsAdmin}"
+            Title="Admin" Icon="admin.png"
+            ContentTemplate="{DataTemplate views:AdminPage}"
+            Route="Admin" />
+
+    </FlyoutItem>
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
+
 
 </Shell>

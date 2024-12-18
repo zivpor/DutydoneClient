@@ -60,6 +60,12 @@
 	  <None Remove="Resources\Fonts\Alloha.otf" />
 	  <None Remove="Resources\Fonts\Super Magnum.otf" />
 	  <None Remove="Resources\Fonts\yarden-regular-alefalefalef.otf" />
+	  <None Remove="Resources\Images\admin.jpg" />
+	  <None Remove="Resources\Images\Calender.jpg" />
+	  <None Remove="Resources\Images\calender2.jpg" />
+	  <None Remove="Resources\Images\groups.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\list.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,10 +75,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AdminPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Calender.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Groups.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Register.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TasksList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
