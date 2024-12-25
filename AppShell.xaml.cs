@@ -1,4 +1,5 @@
 ﻿using DutydoneClient.ViewModels;
+using DutydoneClient.Views;
 
 namespace DutydoneClient
 {
@@ -8,6 +9,13 @@ namespace DutydoneClient
         {
             this.BindingContext = vm;
             InitializeComponent();
+            RegisterRoutes();
+        }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute("createGroup", typeof(CreateGroup));
+            
         }
     }
 }

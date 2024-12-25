@@ -81,6 +81,9 @@
 	  <MauiXaml Update="Views\Calender.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CreateGroup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Groups.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,9 +1,12 @@
+using DutydoneClient.ViewModels;
+
 namespace DutydoneClient.Views;
 
 public partial class Groups : ContentPage
 {
-	public Groups()
+	public Groups(GroupsViewModel vm)
 	{
-		InitializeComponent();
+        this.BindingContext = vm;
+        InitializeComponent();
 	}
 }
