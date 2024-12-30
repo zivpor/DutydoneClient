@@ -7,16 +7,25 @@ namespace DutydoneClient
 {
     public partial class App : Application
     {
+        public AppBasicData BasicData { get; set; }
         public User? LoggedInUser { get; set; }
         private DutyDoneAPIProxy proxy;
-        public App(IServiceProvider serviceProvider)
+        public App(DutyDoneAPIProxy proxy, IServiceProvider serviceProvider)
         {
             
+            this.proxy = proxy;
+            ReadBasicDataFromServer();
             InitializeComponent();
             Login? v = serviceProvider.GetService<Login>();
             
             //Start with the Login View
             MainPage = new NavigationPage(v);
         }
+
+        private async void ReadBasicDataFromServer()
+        {
+            this.BasicData = await proxy.GetBasicData();
+        }
+
     }
 }

@@ -153,8 +153,70 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
+        public async Task<int?> CreateGroup(Group group)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}CreateGroup";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(group);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    int? result = JsonSerializer.Deserialize<int>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
-
-
+        public async Task<AppBasicData?> GetBasicData()
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetBasicData";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    AppBasicData? result = JsonSerializer.Deserialize<AppBasicData>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
