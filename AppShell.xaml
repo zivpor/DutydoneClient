@@ -10,15 +10,15 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent 
-            Title="Calender" Icon="calender2.jpg"
+            Title="Calender" Icon="calender3.jpg"
             ContentTemplate="{DataTemplate views:Calender}"
             Route="Calender"/>
         <ShellContent
-            Title="Tasks" Icon="list.png"
+            Title="Tasks" Icon="lists.png"
             ContentTemplate="{DataTemplate views:TasksList}"
             Route="Tasks" />
         <ShellContent
-            Title="Groups" Icon="group3.png"
+            Title="Groups" Icon="group2.png"
             ContentTemplate="{DataTemplate views:Groups}"
             Route="Groups" />
         <ShellContent
