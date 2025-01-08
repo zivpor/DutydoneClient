@@ -1,6 +1,7 @@
 using DutydoneClient.Services;
 using DutydoneClient.Models;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 
 namespace DutydoneClient.ViewModels;
@@ -8,12 +9,15 @@ namespace DutydoneClient.ViewModels;
 public class CreateGroupViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
+    public ObservableCollection<GroupType> GroupTypes { get; set; }
     public CreateGroupViewModel(DutyDoneAPIProxy proxy)
     {
+        this.GroupTypes = new ObservableCollection<GroupType>(((App)Application.Current).BasicData.GroupTypes);
+        SelectedGroupType = this.GroupTypes[0];
         this.proxy = proxy;
         CreateCommand = new Command(Create);
         NameError = "Name is required";
-        TypeError = "Type is required";
+        
     }
     public Command CreateCommand { get; }
     private bool showNameError;
@@ -68,51 +72,38 @@ public class CreateGroupViewModel : ViewModelBase
         }
     }
 
-    private string type;
+    private GroupType selectedGroupType;
 
-    public string Type
+    public GroupType SelectedGroupType
     {
-        get => type;
+        get => selectedGroupType;
         set
         {
-            type = value;
-            ValidateType();
-            OnPropertyChanged("Type");
+            selectedGroupType = value;
+            OnPropertyChanged("SelectedGroupType");
         }
     }
 
-    private string typeError;
+    
 
-    public string TypeError
-    {
-        get => typeError;
-        set
-        {
-            typeError = value;
-            OnPropertyChanged("TypeError");
-        }
-    }
-
-    private void ValidateType()
-    {
-        this.ShowTypeError = string.IsNullOrEmpty(Type);
-    }
+    
     #endregion
     public async void Create()
     {
         ValidateName();
 
-        ValidateType();
+        
 
 
-        if (!ShowNameError && !ShowTypeError)
+        if (!ShowNameError)
         {
            
             var newGroup = new Models.Group()
             {
                 GroupName = Name,
-                GroupType = Type
-
+                GroupType = SelectedGroupType.GroupTypeId,
+                GroupAdmin = ((App)Application.Current).LoggedInUser.UserId,
+                
 
             };
 
@@ -126,7 +117,7 @@ public class CreateGroupViewModel : ViewModelBase
             {
 
                 InServerCall = false;
-                newGroup.groupId = newGroup.Value;
+                newGroup.GroupId = groupId.Value;
                 ((App)(Application.Current)).MainPage.Navigation.PopAsync();
             }
             else

@@ -29,6 +29,9 @@ namespace DutydoneClient
             builder.Services.AddSingleton<DutyDoneAPIProxy>();
             builder.Services.AddTransient<Groups>();
             builder.Services.AddTransient<GroupsViewModel>();
+            builder.Services.AddTransient<CreateGroup>();
+            builder.Services.AddTransient<CreateGroupViewModel>();
+
 
 
 #if DEBUG

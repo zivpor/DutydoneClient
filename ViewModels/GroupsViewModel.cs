@@ -74,12 +74,14 @@ public class GroupsViewModel : ViewModelBase
     }
     private async void ReadDataFromServer()
     {
+        
         List<Group>? groups = await proxy.GetGroups();
         List<Group>? managerGroups = await proxy.GetManagerGroups();
 
         if (groups != null)
         {
-            foreach(Group g in groups)
+            Groups.Clear();
+            foreach (Group g in groups)
             {
                 Groups.Add(g);
             }
@@ -87,6 +89,7 @@ public class GroupsViewModel : ViewModelBase
 
         if (managerGroups != null)
         {
+            ManagerGroups.Clear();
             foreach (Group g in managerGroups)
             {
                 ManagerGroups.Add(g);
@@ -111,5 +114,10 @@ public class GroupsViewModel : ViewModelBase
             SelectedGroup = null;
             ManagerSelectedGroup = null;
         }
+    }
+
+    public void Refresh()
+    {
+        ReadDataFromServer();
     }
 }
