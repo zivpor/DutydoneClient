@@ -10,9 +10,9 @@ public class GroupsViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
     private IServiceProvider serviceProvider;
-    private ObservableCollection<Group> groups;
+    private ObservableCollection<Models.Group> groups;
     
-    public ObservableCollection<Group> Groups
+    public ObservableCollection<Models.Group> Groups
     {
         get => groups;
         set
@@ -21,8 +21,8 @@ public class GroupsViewModel : ViewModelBase
             OnPropertyChanged("Groups");
         }
     }
-    private ObservableCollection<Group> managerGroups;
-    public ObservableCollection<Group> ManagerGroups
+    private ObservableCollection<Models.Group> managerGroups;
+    public ObservableCollection<Models.Group> ManagerGroups
     {
         get => managerGroups;
         set
@@ -66,8 +66,8 @@ public class GroupsViewModel : ViewModelBase
         this.serviceProvider = serviceProvider;
         this.proxy = proxy;
         CreateGroupCommand = new Command(GoToCreateGroup);
-        ManagerGroups = new ObservableCollection<Group>();
-        Groups = new ObservableCollection<Group>();
+        ManagerGroups = new ObservableCollection<Models.Group>();
+        Groups = new ObservableCollection<Models.Group>();
         SelectedGroup = null;
         managerSelectedGroup = null;
         ReadDataFromServer();
@@ -75,13 +75,13 @@ public class GroupsViewModel : ViewModelBase
     private async void ReadDataFromServer()
     {
         
-        List<Group>? groups = await proxy.GetGroups();
-        List<Group>? managerGroups = await proxy.GetManagerGroups();
+        List<Models.Group>? groups = await proxy.GetGroups();
+        List<Models.Group>? managerGroups = await proxy.GetManagerGroups();
 
         if (groups != null)
         {
             Groups.Clear();
-            foreach (Group g in groups)
+            foreach (Models.Group g in groups)
             {
                 Groups.Add(g);
             }
@@ -90,7 +90,7 @@ public class GroupsViewModel : ViewModelBase
         if (managerGroups != null)
         {
             ManagerGroups.Clear();
-            foreach (Group g in managerGroups)
+            foreach (Models.Group g in managerGroups)
             {
                 ManagerGroups.Add(g);
             }
