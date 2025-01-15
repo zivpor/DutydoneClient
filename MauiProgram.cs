@@ -31,7 +31,8 @@ namespace DutydoneClient
             builder.Services.AddTransient<GroupsViewModel>();
             builder.Services.AddTransient<CreateGroup>();
             builder.Services.AddTransient<CreateGroupViewModel>();
-
+            builder.Services.AddTransient<GroupPage>();
+            builder.Services.AddTransient < GroupPageViewModel>();
 
 
 #if DEBUG

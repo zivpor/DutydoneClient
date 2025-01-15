@@ -105,15 +105,30 @@ public class GroupsViewModel : ViewModelBase
     {
         if (g != null)
         {
-            var navParam = new Dictionary<string, object>
+            if(g.GroupAdmin==this.User.userId)
+            { 
+                var navParam = new Dictionary<string, object>
+                {
+                    { "managerSelectedGroup", g }
+                };
+                //Navigate to the task details page
+                await Shell.Current.GoToAsync("manageredGroupPage", navParam);
+            
+                }
+            else
             {
+                var navParam = new Dictionary<string, object>
+                {
                     { "selectedGroup", g }
                 };
-            //Navigate to the task details page
-            await Shell.Current.GoToAsync("GroupView", navParam);
+                //Navigate to the task details page
+                await Shell.Current.GoToAsync("groupPage", navParam);
+
+            }
+        }
             SelectedGroup = null;
             ManagerSelectedGroup = null;
-        }
+        
     }
 
     public void Refresh()

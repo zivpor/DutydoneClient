@@ -15,7 +15,9 @@ namespace DutydoneClient
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("createGroup", typeof(CreateGroup));
-            
+            Routing.RegisterRoute("groupPage", typeof(GroupPage));
+            Routing.RegisterRoute("manageredGroupPage", typeof(ManageredGroupPage));
+
         }
     }
 }
