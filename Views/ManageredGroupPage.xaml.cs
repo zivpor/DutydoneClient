@@ -1,9 +1,12 @@
+using DutydoneClient.ViewModels;
+
 namespace DutydoneClient.Views;
 
 public partial class ManageredGroupPage : ContentPage
 {
-	public ManageredGroupPage()
+	public ManageredGroupPage(ManageredGroupPageViewModel vm)
 	{
-		InitializeComponent();
+        this.BindingContext = vm;
+        InitializeComponent();
 	}
 }

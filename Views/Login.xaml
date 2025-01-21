@@ -43,6 +43,7 @@
 
         </HorizontalStackLayout>
         <Label 
+            TextColor="Black"
             Text="NO USER?"
             FontFamily="SM"
             HorizontalOptions="Center"/>

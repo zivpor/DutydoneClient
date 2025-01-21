@@ -12,6 +12,7 @@ namespace DutydoneClient
             RegisterRoutes();
         }
 
+        
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("createGroup", typeof(CreateGroup));

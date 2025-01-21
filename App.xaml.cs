@@ -9,6 +9,7 @@ namespace DutydoneClient
     {
         public AppBasicData BasicData { get; set; }
         public User? LoggedInUser { get; set; }
+        public Group? SelectedGroup { get; set; }
         private DutyDoneAPIProxy proxy;
         public App(DutyDoneAPIProxy proxy, IServiceProvider serviceProvider)
         {

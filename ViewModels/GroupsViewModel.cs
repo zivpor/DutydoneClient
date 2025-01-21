@@ -105,16 +105,17 @@ public class GroupsViewModel : ViewModelBase
     {
         if (g != null)
         {
-            if(g.GroupAdmin==this.User.userId)
-            { 
+            User currentUser = ((App)Application.Current).LoggedInUser;
+            if (g.GroupAdmin == currentUser.UserId)
+            {
                 var navParam = new Dictionary<string, object>
                 {
                     { "managerSelectedGroup", g }
                 };
                 //Navigate to the task details page
                 await Shell.Current.GoToAsync("manageredGroupPage", navParam);
-            
-                }
+
+            }
             else
             {
                 var navParam = new Dictionary<string, object>

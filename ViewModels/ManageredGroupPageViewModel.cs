@@ -1,3 +1,4 @@
+using DutydoneClient.Models;
 using DutydoneClient.Services;
 
 namespace DutydoneClient.ViewModels;
@@ -14,8 +15,20 @@ public class ManageredGroupPageViewModel : ViewModelBase
         this.proxy = proxy;
         AddPeopleCommand = new Command(AddPeople);
         AddTaskCommand = new Command(AddTask);
-    }
+        Group g= ((App)Application.Current).SelectedGroup;
+        GroupName = g.GroupName;
 
+    }
+    private string groupName;
+    public string GroupName
+    {
+        get => groupName;
+        set
+        {
+            groupName = value;
+            OnPropertyChanged("groupName");
+        }
+    }
     private async void AddTask()
     {
         await Shell.Current.GoToAsync("addTask");
