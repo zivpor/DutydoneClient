@@ -2,7 +2,7 @@ using DutydoneClient.Models;
 using DutydoneClient.Services;
 
 namespace DutydoneClient.ViewModels;
-
+[QueryProperty("Group", "manageredGroupPage")]
 public class ManageredGroupPageViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
@@ -10,13 +10,28 @@ public class ManageredGroupPageViewModel : ViewModelBase
     public Command AddPeopleCommand { get; }
     public Command AddTaskCommand { get; }
 
+    private Group group;
+    public Group Group
+    {
+        get => group;
+        set
+        {
+            if (group != value)
+            {
+                group = value;
+                InFieldDataAsync();
+                OnPropertyChanged(nameof(Group));
+            }
+        }
+    }
+
     public ManageredGroupPageViewModel(DutyDoneAPIProxy proxy)
 	{
         this.proxy = proxy;
         AddPeopleCommand = new Command(AddPeople);
         AddTaskCommand = new Command(AddTask);
-        Group g= ((App)Application.Current).SelectedGroup;
-        GroupName = g.GroupName;
+        
+       
 
     }
     private string groupName;
@@ -28,6 +43,10 @@ public class ManageredGroupPageViewModel : ViewModelBase
             groupName = value;
             OnPropertyChanged("groupName");
         }
+    }
+    private async void InFieldDataAsync()
+    {
+        GroupName = group.GroupName;
     }
     private async void AddTask()
     {
