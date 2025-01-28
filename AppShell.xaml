@@ -26,7 +26,7 @@
             ContentTemplate="{DataTemplate views:HomePage}"
             Route="Home" />
         <ShellContent IsVisible="{Binding IsAdmin}"
-            Title="Admin" Icon="admin.png"
+            Title="Admin" Icon="admin3.png"
             ContentTemplate="{DataTemplate views:AdminPage}"
             Route="Admin" />
 
