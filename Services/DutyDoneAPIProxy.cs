@@ -253,5 +253,14 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
+        public string GetImagesBaseAddress()
+        {
+            return DutyDoneAPIProxy.ImageBaseAddress;
+        }
+
+        public string GetDefaultProfilePhotoUrl()
+        {
+            return $"{DutyDoneAPIProxy.ImageBaseAddress}/profileImages/default.png";
+        }
     }
 }

@@ -7,10 +7,19 @@
              Title="ManageredGroupPage"
              x:DataType="viewmodel:ManageredGroupPageViewModel">
     <VerticalStackLayout>
+        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="EndAndExpand"  Command="{Binding AddPeopleCommand}" Text="+" FontSize="18" />
+        
         <Label 
             Text="{Binding GroupName}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
-            TextColor="Black"/>
+            TextColor="Black"
+            />
+
+
+        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="Center">
+            <Entry/>
+            
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>
