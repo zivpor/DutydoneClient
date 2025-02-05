@@ -262,5 +262,38 @@ namespace DutydoneClient.Services
         {
             return $"{DutyDoneAPIProxy.ImageBaseAddress}/profileImages/default.png";
         }
+        public async Task<int?> AddTask(Models.Task task)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}AddTask";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(task);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    int? result = JsonSerializer.Deserialize<int>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

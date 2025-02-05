@@ -17,9 +17,12 @@
             />
 
 
-        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="Center">
+        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="End">
             <Entry/>
             
+
         </Frame>
+        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="EndAndExpand"  Command="{Binding AddTaskCommand}" Text="+" FontSize="18" />
+
     </VerticalStackLayout>
 </ContentPage>
