@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Task Name" />
+                    <Label Grid.Column="0" Text="Task Name:" />
                     <Label
                     Grid.Column="1"
                     IsVisible="{Binding ShowNameError}"
@@ -32,7 +32,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="The Time To Finish The Task" />
+                    <Label Grid.Column="0" Text="The Deadline:" />
                     <DatePicker/>
                 </Grid>
                 <Grid>
@@ -40,16 +40,16 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Task Type" />
+                    <Label Grid.Column="0" Text="Task Type:" />
                     <Picker
     Grid.Column="1"
-    ItemDisplayBinding="{Binding GroupTypeName}"
-    ItemsSource="{Binding GroupTypes}"
-    SelectedItem="{Binding SelectedGroupType}" />
+    ItemDisplayBinding="{Binding TaskTypeName}"
+    ItemsSource="{Binding TaskTypes}"
+    SelectedItem="{Binding SelectedTaskType}" />
                 </Grid>
 
                 <Button
-                Command="{Binding CreateCommand}"
+                Command="{Binding AddTaskCommand}"
                 IsEnabled="{Binding NotInServerCall}"
                 Text="Create" />
 

@@ -6,8 +6,9 @@
              x:Class="DutydoneClient.Views.ManageredGroupPage"
              Title="ManageredGroupPage"
              x:DataType="viewmodel:ManageredGroupPageViewModel">
-    <VerticalStackLayout>
-        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="EndAndExpand"  Command="{Binding AddPeopleCommand}" Text="+" FontSize="18" />
+    <Grid>
+    <VerticalStackLayout VerticalOptions="FillAndExpand">
+        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="Start"  Command="{Binding AddPeopleCommand}" Text="+" FontSize="18" />
         
         <Label 
             Text="{Binding GroupName}"
@@ -17,12 +18,20 @@
             />
 
 
-        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="End">
-            <Entry/>
-            
-
-        </Frame>
-        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="EndAndExpand"  Command="{Binding AddTaskCommand}" Text="+" FontSize="18" />
+        
 
     </VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="End" Grid.Column="0">
+            <Entry/>
+
+
+        </Frame>
+        <Button WidthRequest="38" HeightRequest="38" VerticalOptions="EndAndExpand"  Command="{Binding AddTaskCommand}" Text="+" FontSize="18" Grid.Column="1"/>
+        </Grid>
+    </Grid>
 </ContentPage>
