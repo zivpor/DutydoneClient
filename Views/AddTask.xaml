@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
              x:Class="DutydoneClient.Views.AddTask"
              Title="AddTask">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <Label
+        FontFamily="Alloha"
+        FontSize="60"
+        HorizontalOptions="Center"
+        Text="Add Task"
+        TextColor="LightBlue" />
+        <Grid>
+            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+
+                <!--  User Name  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Task Name" />
+                    <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding ShowNameError}"
+                    Text="{Binding NameError}" />
+                </Grid>
+                <Entry Placeholder="Type Task Name" Text="{Binding Name}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="The Time To Finish The Task" />
+                    <DatePicker/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Task Type" />
+                    <Picker
+    Grid.Column="1"
+    ItemDisplayBinding="{Binding GroupTypeName}"
+    ItemsSource="{Binding GroupTypes}"
+    SelectedItem="{Binding SelectedGroupType}" />
+                </Grid>
+
+                <Button
+                Command="{Binding CreateCommand}"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Create" />
+
+
+            </VerticalStackLayout>
+        </Grid>
+    </StackLayout>
 </ContentPage>

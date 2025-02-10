@@ -1,9 +1,12 @@
+using DutydoneClient.ViewModels;
+
 namespace DutydoneClient.Views;
 
 public partial class AddTask : ContentPage
 {
-	public AddTask()
+	public AddTask(AddTaskViewModel vm)
 	{
-		InitializeComponent();
+        this.BindingContext = vm;
+        InitializeComponent();
 	}
 }
