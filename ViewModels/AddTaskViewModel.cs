@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 
 namespace DutydoneClient.ViewModels;
-
+[QueryProperty("Group", "group")]
 public class AddTaskViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
@@ -16,9 +16,23 @@ public class AddTaskViewModel : ViewModelBase
         this.proxy = proxy;
         AddTaskCommand = new Command(AddTask);
         NameError = "Name is required";
+        TaskActualDate = DateTime.Now;
+        
     }
 
-
+    private Group group;
+    public Group Group
+    {
+        get => group;
+        set
+        {
+            if (group != value)
+            {
+                group = value;
+                OnPropertyChanged(nameof(Group));
+            }
+        }
+    }
 
     public Command AddTaskCommand { get; }
     private bool showNameError;
@@ -232,7 +246,8 @@ public class AddTaskViewModel : ViewModelBase
                 TaskType = SelectedTaskType.TaskTypeId,
                 UserId = ((App)Application.Current).LoggedInUser.UserId,
                 DueDay = taskActualDate,
-
+                StatusId = 1,
+                GroupId = Group.GroupId
 
             };
 

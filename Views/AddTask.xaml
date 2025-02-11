@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
-             x:Class="DutydoneClient.Views.AddTask"
-             Title="AddTask">
+<ContentPage
+    x:Class="DutydoneClient.Views.AddTask"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
+    Title="AddTask"
+    x:DataType="viewmodel:AddTaskViewModel">
     <StackLayout>
         <Label
-        FontFamily="Alloha"
-        FontSize="60"
-        HorizontalOptions="Center"
-        Text="Add Task"
-        TextColor="LightBlue" />
+            FontFamily="Alloha"
+            FontSize="60"
+            HorizontalOptions="Center"
+            Text="{Binding Group.GroupName, StringFormat='Add Task To {0}'}"
+            TextColor="LightBlue" />
         <Grid>
             <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
 
@@ -22,9 +24,9 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Text="Task Name:" />
                     <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowNameError}"
-                    Text="{Binding NameError}" />
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowNameError}"
+                        Text="{Binding NameError}" />
                 </Grid>
                 <Entry Placeholder="Type Task Name" Text="{Binding Name}" />
                 <Grid>
@@ -33,7 +35,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Text="The Deadline:" />
-                    <DatePicker/>
+                    <DatePicker Date="{Binding TaskActualDate}" />
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -42,16 +44,16 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Text="Task Type:" />
                     <Picker
-    Grid.Column="1"
-    ItemDisplayBinding="{Binding TaskTypeName}"
-    ItemsSource="{Binding TaskTypes}"
-    SelectedItem="{Binding SelectedTaskType}" />
+                        Grid.Column="1"
+                        ItemDisplayBinding="{Binding TaskTypeName}"
+                        ItemsSource="{Binding TaskTypes}"
+                        SelectedItem="{Binding SelectedTaskType}" />
                 </Grid>
 
                 <Button
-                Command="{Binding AddTaskCommand}"
-                IsEnabled="{Binding NotInServerCall}"
-                Text="Create" />
+                    Command="{Binding AddTaskCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Create" />
 
 
             </VerticalStackLayout>

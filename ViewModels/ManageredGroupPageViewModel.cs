@@ -50,7 +50,11 @@ public class ManageredGroupPageViewModel : ViewModelBase
     }
     private async void AddTask()
     {
-        await Shell.Current.GoToAsync("addTask");
+        var navParam = new Dictionary<string, object>
+        {
+            { "group", Group }
+        };
+        await Shell.Current.GoToAsync("addTask", navParam);
     }
 
     private async void AddPeople()
