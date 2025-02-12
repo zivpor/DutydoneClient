@@ -15,12 +15,27 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             TextColor="Black"
+             FontSize="30"
+             FontFamily="Alloha"
             />
+            <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding Tasks}"
+             SelectionMode="Single"
+             SelectedItem="{Binding Tasks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Task">
+                        <StackLayout Padding="10">
+
+                            <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+                            <Label Text="{Binding TaskType.Value}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
-        
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>

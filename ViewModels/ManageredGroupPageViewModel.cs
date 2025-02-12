@@ -1,5 +1,6 @@
 using DutydoneClient.Models;
 using DutydoneClient.Services;
+using System.Collections.ObjectModel;
 
 namespace DutydoneClient.ViewModels;
 [QueryProperty("Group", "managerSelectedGroup")]
@@ -24,14 +25,24 @@ public class ManageredGroupPageViewModel : ViewModelBase
             }
         }
     }
+    private ObservableCollection<Models.Task> tasks;
 
+    public ObservableCollection<Models.Task> Tasks
+    {
+        get => tasks;
+        set
+        {
+            tasks = value;
+            OnPropertyChanged("Tasks");
+        }
+    }
     public ManageredGroupPageViewModel(DutyDoneAPIProxy proxy)
 	{
         this.proxy = proxy;
         AddPeopleCommand = new Command(AddPeople);
         AddTaskCommand = new Command(AddTask);
-        
-       
+        Tasks = new ObservableCollection<Models.Task>();
+        ReadDataFromServer();
 
     }
     private string groupName;
@@ -42,6 +53,21 @@ public class ManageredGroupPageViewModel : ViewModelBase
         {
             groupName = value;
             OnPropertyChanged();
+        }
+    }
+    private async void ReadDataFromServer()
+    {
+
+        List<Models.Task>? tasks = await proxy.GetGroupTasks();
+
+
+        if (tasks != null)
+        {
+            Tasks.Clear();
+            foreach (Models.Task t in tasks)
+            {
+                tasks.Add(t);
+            }
         }
     }
     private async void InFieldDataAsync()

@@ -8,6 +8,7 @@ namespace DutydoneClient.ViewModels;
 public class AddTaskViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
+    
     public ObservableCollection<TaskType> TaskTypes { get; set; }
     public AddTaskViewModel(DutyDoneAPIProxy proxy)
     {
@@ -19,7 +20,7 @@ public class AddTaskViewModel : ViewModelBase
         TaskActualDate = DateTime.Now;
         
     }
-
+   
     private Group group;
     public Group Group
     {

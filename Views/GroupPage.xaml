@@ -4,11 +4,49 @@
              xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
              xmlns:model="clr-namespace:DutydoneClient.Models"
              x:Class="DutydoneClient.Views.GroupPage"
-             Title="GroupPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding }"
+             Title="GroupPage"
+             x:DataType="viewmodel:ManageredGroupPageViewModel">
+    <Grid>
+        <VerticalStackLayout VerticalOptions="FillAndExpand">
+            
+
+            <Label 
+            Text="{Binding GroupName}"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            HorizontalOptions="Center" 
+            TextColor="Black"
+            FontSize="30"
+            FontFamily="Alloha"/>
+
+            <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding Tasks}"
+         SelectionMode="Single"
+         SelectedItem="{Binding Tasks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Task">
+                        <StackLayout Padding="10">
+
+                            <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+                            <Label Text="{Binding TaskType.Value}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="End" Grid.Column="0">
+                <Entry/>
+
+
+            </Frame>
+            
+        </Grid>
+    </Grid>
 </ContentPage>
