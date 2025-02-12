@@ -52,7 +52,7 @@ public class GroupPageViewModel : ViewModelBase
     private async void ReadDataFromServer()
     {
 
-        List<Models.Task>? tasks = await proxy.GetGroupTasks();
+        List<Models.Task>? tasks = await proxy.GetGroupTasks(group);
 
 
         if (tasks != null)

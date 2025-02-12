@@ -295,14 +295,16 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
-        public async Task<List<Models.Task>?> GetGroupTasks()
+        public async Task<List<Models.Task>?> GetGroupTasks(Models.Group group)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}GetGroupTasks";
             try
             {
                 //Call the server API
-                HttpResponseMessage response = await client.GetAsync(url);
+                string json = JsonSerializer.Serialize(group);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
