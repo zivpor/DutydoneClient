@@ -283,7 +283,8 @@ public class RegisterViewModel : ViewModelBase
                 Username = Name,
                 Email = Email,
                 UserPassword = Password,
-                
+                ProfileImagePath = ""
+
             };
 
             //Call the Register method on the proxy to register the new user
@@ -297,6 +298,21 @@ public class RegisterViewModel : ViewModelBase
                 
                 InServerCall = false;
                 newUser.UserId = userId.Value;
+                if(localPhotoPath != null)
+                {
+                    await proxy.LoginAsync(new LoginInfo()
+                    {
+                        Email = Email,
+                        Password = Password
+                    });
+
+                    newUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                    if (newUser == null)
+                    {
+                        string errorMsg = "Registration succeeded but photo failed to be uploaded.";
+                        await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                    }
+                }
                 ((App)(Application.Current)).MainPage.Navigation.PopAsync();
             }
             else

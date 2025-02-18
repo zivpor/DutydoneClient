@@ -11,6 +11,7 @@ namespace DutydoneClient.Models
         public int GroupId { get; set; }
         public int? GroupAdmin { get; set; }
         public string? GroupName { get; set; }
+        public string GroupProfileImagePath { get; set; }
         public int? GroupType { get; set; }
         public string? GroupTypeName
         {
@@ -28,11 +29,6 @@ namespace DutydoneClient.Models
             }
         }
         public Group() { }
-        public Group(Models.Group group)
-        {
-            this.GroupAdmin = group.GroupAdmin;
-            this.GroupName = group.GroupName;
-            this.GroupType = group.GroupType;
-        }
+        
     }
 }

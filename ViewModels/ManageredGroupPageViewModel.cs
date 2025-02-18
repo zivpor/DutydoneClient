@@ -20,7 +20,8 @@ public class ManageredGroupPageViewModel : ViewModelBase
             if (group != value)
             {
                 group = value;
-                InFieldDataAsync();
+                ReadDataFromServer();
+                GroupName = group.GroupName;
                 OnPropertyChanged(nameof(Group));
             }
         }
@@ -42,7 +43,7 @@ public class ManageredGroupPageViewModel : ViewModelBase
         AddPeopleCommand = new Command(AddPeople);
         AddTaskCommand = new Command(AddTask);
         Tasks = new ObservableCollection<Models.Task>();
-        ReadDataFromServer();
+        
 
     }
     private string groupName;
@@ -66,14 +67,11 @@ public class ManageredGroupPageViewModel : ViewModelBase
             Tasks.Clear();
             foreach (Models.Task t in tasks)
             {
-                tasks.Add(t);
+                Tasks.Add(t);
             }
         }
     }
-    private async void InFieldDataAsync()
-    {
-        GroupName = Group.GroupName;
-    }
+    
     private async void AddTask()
     {
         var navParam = new Dictionary<string, object>

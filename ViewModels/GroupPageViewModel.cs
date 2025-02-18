@@ -17,6 +17,8 @@ public class GroupPageViewModel : ViewModelBase
             if (group != value)
             {
                 group = value;
+                ReadDataFromServer();
+                GroupName = group.GroupName;
                 OnPropertyChanged(nameof(Group));
             }
         }
@@ -32,11 +34,11 @@ public class GroupPageViewModel : ViewModelBase
             OnPropertyChanged("Tasks");
         }
     }
-    public GroupPageViewModel()
+    public GroupPageViewModel(DutyDoneAPIProxy proxy)
 	{
         this.proxy = proxy;
         Tasks = new ObservableCollection<Models.Task>();
-        ReadDataFromServer();
+        
     }
     private string groupName;
     public string GroupName
@@ -45,7 +47,7 @@ public class GroupPageViewModel : ViewModelBase
         set
         {
             groupName = value;
-            InFieldDataAsync();
+            
             OnPropertyChanged();
         }
     }
@@ -60,12 +62,9 @@ public class GroupPageViewModel : ViewModelBase
             Tasks.Clear();
             foreach (Models.Task t in tasks)
             {
-                tasks.Add(t);
+                Tasks.Add(t);
             }
         }
     }
-    private async void InFieldDataAsync()
-    {
-        GroupName = Group.GroupName;
-    }
+    
 }

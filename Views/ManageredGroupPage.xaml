@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
-             xmlns:model="clr-namespace:DutydoneClient.Models"
-             x:Class="DutydoneClient.Views.ManageredGroupPage"
-             Title="ManageredGroupPage"
-             x:DataType="viewmodel:ManageredGroupPageViewModel">
+<ContentPage
+    x:Class="DutydoneClient.Views.ManageredGroupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DutydoneClient.Models"
+    xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
+    Title="ManageredGroupPage"
+    x:DataType="viewmodel:ManageredGroupPageViewModel">
     <Grid>
-    <VerticalStackLayout VerticalOptions="FillAndExpand">
-        <Button WidthRequest="38" HeightRequest="38" HorizontalOptions="Start"  Command="{Binding AddPeopleCommand}" Text="+" FontSize="18" />
-        
-        <Label 
-            Text="{Binding GroupName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            TextColor="Black"
-             FontSize="30"
-             FontFamily="Alloha"
-            />
-            <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
-            <CollectionView ItemsSource="{Binding Tasks}"
-             SelectionMode="Single"
-             SelectedItem="{Binding Tasks}">
+        <VerticalStackLayout VerticalOptions="FillAndExpand">
+            <Button
+                Command="{Binding AddPeopleCommand}"
+                FontSize="18"
+                HeightRequest="38"
+                HorizontalOptions="Start"
+                Text="+"
+                WidthRequest="38" />
+
+            <Label
+                FontFamily="Alloha"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="{Binding GroupName}"
+                TextColor="Black"
+                VerticalOptions="Center" />
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="The Group Tasks:" />
+            <CollectionView
+                ItemsSource="{Binding Tasks}"
+                SelectedItem="{Binding Tasks}"
+                SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
                         <StackLayout Padding="10">
 
-                            <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                            <Label Text="{Binding TaskType.Value}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding TaskName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding TaskType.Value}" />
 
                         </StackLayout>
                     </DataTemplate>
@@ -38,15 +56,27 @@
         </VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-        <Frame BorderColor="Black" Padding="5" Margin="10" VerticalOptions="End" Grid.Column="0">
-            <Entry/>
+            <Frame
+                Grid.Column="0"
+                Margin="10"
+                Padding="5"
+                BorderColor="Black"
+                VerticalOptions="End">
+                <Entry />
 
 
-        </Frame>
-        <Button WidthRequest="38" HeightRequest="38" VerticalOptions="EndAndExpand"  Command="{Binding AddTaskCommand}" Text="+" FontSize="18" Grid.Column="1"/>
+            </Frame>
+            <Button
+                Grid.Column="1"
+                Command="{Binding AddTaskCommand}"
+                FontSize="18"
+                HeightRequest="38"
+                Text="+"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="38" />
         </Grid>
     </Grid>
 </ContentPage>
