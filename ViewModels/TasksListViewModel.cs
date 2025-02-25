@@ -40,11 +40,11 @@ public class TasksListViewModel : ViewModelBase
 	private bool filtered;
 	public async void Filter()
 	{
-		filtered = true;
-		FilterdTasks.Clear();
-		foreach(Models.Task t in this.allTasks)
-		{
-			if()
-		}
+		//filtered = true;
+		//FilterdTasks.Clear();
+		//foreach (Models.Task t in this.allTasks)
+		//{
+		//	if ()
+		//}
 	}
 }
