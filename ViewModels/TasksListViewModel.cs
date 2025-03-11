@@ -1,6 +1,7 @@
 using DutydoneClient.Models;
 using DutydoneClient.Services;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace DutydoneClient.ViewModels;
 
@@ -10,6 +11,7 @@ public class TasksListViewModel : ViewModelBase
 	private DutyDoneAPIProxy proxy;
 	private List<Models.Task> allTasks;
 	private ObservableCollection<Models.Task> filterdTasks;
+    public ObservableCollection<TaskType> TaskTypes { get; set; }
     public ObservableCollection<Models.Task> FilterdTasks
 	{
 		get
@@ -22,6 +24,19 @@ public class TasksListViewModel : ViewModelBase
 			OnPropertyChanged();
 		}
 	}
+    private TaskType selectedType;
+    public Object SelectedType
+    {
+        get => selectedType;
+        set
+        {
+			if (value is TaskType)
+				selectedType = (TaskType)value;
+			Filter();
+			OnPropertyChanged();
+        }
+    }
+
     public TasksListViewModel(DutyDoneAPIProxy proxy)
 	{
 		this.proxy = proxy;
@@ -29,22 +44,41 @@ public class TasksListViewModel : ViewModelBase
 		allTasks = new List<Models.Task>();
 		FilterdTasks = new ObservableCollection<Models.Task>();
 		filtered = false;
-		ReadTasks();
+        this.TaskTypes = new ObservableCollection<TaskType>(((App)Application.Current).BasicData.TaskTypes);
+		this.TaskTypes.Add(new TaskType()
+		{
+			TaskTypeId = 0,
+			TaskTypeName = "All"
+		});
+        SelectedType = this.TaskTypes[TaskTypes.Count-1];
+        ReadTasks();
 	}
-	private async void ReadTasks()
+    public ICommand DoneCommand => new Command<Models.Task>(OnDone);
+    void OnDone(Models.Task t)
+    {
+        if (FilterdTasks.Contains(t))
+        {
+			t.StatusId = 3;
+        }
+    }
+    private async void ReadTasks()
 	{
 		allTasks = await proxy.GetTasks();
 		if (allTasks == null)
 			allTasks = new List<Models.Task>();
+		Filter();
 	}
 	private bool filtered;
 	public async void Filter()
 	{
 		//filtered = true;
-		//FilterdTasks.Clear();
-		//foreach (Models.Task t in this.allTasks)
-		//{
-		//	if ()
-		//}
+		filterdTasks.Clear();
+		foreach (Models.Task t in this.allTasks)
+		{
+			if (selectedType.TaskTypeId == 0 || t.TaskType == selectedType.TaskTypeId)
+			{
+				FilterdTasks.Add(t);
+			}
+		}
 	}
 }

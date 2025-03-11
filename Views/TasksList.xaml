@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DutydoneClient.Views.TasksList"
-             Title="TasksList">
+<ContentPage
+    x:Class="DutydoneClient.Views.TasksList"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="TasksList">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+            FontFamily="Alloha"
+            FontSize="60"
+            HorizontalOptions="Center"
+            Text="List page"
+            TextColor="LightBlue" />
+        <Label Text="filter by:" />
+        <Picker
+            Grid.Column="1"
+            ItemDisplayBinding="{Binding TaskTypeName}"
+            ItemsSource="{Binding TaskTypes}"
+            SelectedItem="{Binding SelectedType}" />
+        <CollectionView
+            x:Name="theCollectionView"
+            ItemsLayout="VerticalList"
+            ItemsSource="{Binding FilterdTasks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    
+                                    Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DoneCommand}"
+                                    CommandParameter="{Binding}"
+                                    IconImageSource="done.png"
+                                    Text="Done" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid
+                            Padding="10"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                Text="{Binding TaskName}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                Text="{Binding TaskType}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontAttributes="Italic"
+                                Text="{Binding DueDate, StringFormat='{0:MMMM dd, yyyy}'}" />
+
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
+
 </ContentPage>

@@ -37,7 +37,8 @@ namespace DutydoneClient
             builder.Services.AddTransient<ManageredGroupPageViewModel>();
             builder.Services.AddTransient<AddTask>();
             builder.Services.AddTransient<AddTaskViewModel>();
-
+            builder.Services.AddTransient<TasksList>();
+            builder.Services.AddTransient<TasksListViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();
