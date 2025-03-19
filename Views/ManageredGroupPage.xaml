@@ -24,28 +24,16 @@
                 Text="{Binding GroupName}"
                 TextColor="Black"
                 VerticalOptions="Center" />
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                Text="The Group Tasks:" />
-            <CollectionView
-                ItemsSource="{Binding Tasks}"
-                SelectedItem="{Binding Tasks}"
-                SelectionMode="None">
+            <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding Tasks}" 
+SelectionMode="Single"
+SelectedItem="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="10" HorizontalOptions="Center">
 
-                            <Label
-                                FontAttributes="Italic"
-                                FontFamily="SM"
-                                FontSize="Small"
-                                Text="{Binding TaskName}" />
-                            <Label
-                                FontAttributes="Italic"
-                                FontFamily="SM"
-                                FontSize="Small"
-                                Text="{Binding TaskType.Value}" />
+                            <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+
 
                         </StackLayout>
                     </DataTemplate>

@@ -17,6 +17,35 @@
             ItemDisplayBinding="{Binding TaskTypeName}"
             ItemsSource="{Binding TaskTypes}"
             SelectedItem="{Binding SelectedType}" />
+        <Grid Padding="10"
+    HorizontalOptions="FillAndExpand"
+    VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Grid.Column="0"
+                Text="Task Name"
+                 FontAttributes="Bold"/>
+            <Label 
+                 Grid.Column="1"
+                Text="Task Type"
+                 FontAttributes="Bold"/>
+            <Label 
+                Grid.Column="2"
+                Text="Task Status"
+                 FontAttributes="Bold"/>
+            <Label 
+                Grid.Column="3"
+                Text="Task DueDate"
+                 FontAttributes="Bold"/>
+        </Grid>
         <CollectionView
             x:Name="theCollectionView"
             ItemsLayout="VerticalList"
@@ -34,34 +63,45 @@
                                     Text="Done" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
+                        
                         <Grid
                             Padding="10"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="Start">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                FontAttributes="Bold"
-                                Text="{Binding TaskName}" />
+                                Text="{Binding TaskName}"
+                               FontSize="13"/>
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                FontAttributes="Bold"
                                 HorizontalOptions="Center"
-                                Text="{Binding TaskType}" />
+                                Text="{Binding TypeName}"
+                                FontSize="11"/>
+
                             <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                FontAttributes="Italic"
-                                Text="{Binding DueDate, StringFormat='{0:MMMM dd, yyyy}'}" />
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="{Binding StatusName}" 
+                                FontSize="11"/>
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="{Binding DueDayTime, StringFormat='{0:MMMM dd, yyyy}'}" 
+                                FontSize="11"/>
 
                         </Grid>
                     </SwipeView>

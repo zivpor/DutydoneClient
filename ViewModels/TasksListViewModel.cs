@@ -58,7 +58,10 @@ public class TasksListViewModel : ViewModelBase
     {
         if (FilterdTasks.Contains(t))
         {
+			int i = FilterdTasks.IndexOf(t);
+			FilterdTasks.Remove(t);
 			t.StatusId = 3;
+			FilterdTasks.Insert(i, t);
         }
     }
     private async void ReadTasks()

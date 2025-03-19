@@ -19,15 +19,15 @@
             FontFamily="Alloha"/>
 
             <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
-            <CollectionView ItemsSource="{Binding Tasks}"
+            <CollectionView ItemsSource="{Binding Tasks}" 
          SelectionMode="Single"
          SelectedItem="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="10" HorizontalOptions="Center">
 
                             <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                            <Label Text="{Binding TaskType.Value}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
+                            
 
                         </StackLayout>
                     </DataTemplate>
