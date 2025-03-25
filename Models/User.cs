@@ -9,6 +9,7 @@ public class User
     public string Username { get; set; }
     public string UserPassword { get; set; }
     public bool IsAdmin { get; set; }
+    public bool IsBlocked { get; set; }
     public string ProfileImagePath { get; set; }
     public string FullImageUrl
     {
@@ -25,5 +26,6 @@ public class User
         this.Username = Username;
         this.UserPassword = UserPassword;
         this.IsAdmin = user.IsAdmin;
+        this.IsBlocked = user.IsBlocked;
     }
 }

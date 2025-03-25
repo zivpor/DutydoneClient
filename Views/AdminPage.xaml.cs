@@ -1,9 +1,12 @@
+using DutydoneClient.ViewModels;
+
 namespace DutydoneClient.Views;
 
 public partial class AdminPage : ContentPage
 {
-	public AdminPage()
+	public AdminPage(AdminPageViewModel vm)
 	{
-		InitializeComponent();
+        this.BindingContext = vm;
+        InitializeComponent();
 	}
 }
