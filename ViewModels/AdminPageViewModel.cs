@@ -22,6 +22,7 @@ public class AdminPageViewModel : ContentPage
         }
         BlockPic = "blocked.png";
         BlockCommand = new Command<User>(OnBlock);
+        
         ReadUsers();
     }
     #region Collection View of Users
@@ -44,6 +45,8 @@ public class AdminPageViewModel : ContentPage
     private async void ReadUsers()
     {
         List<User> list = await proxy.GetUsers();
+        if (list == null)
+            return;
         this.Users = new ObservableCollection<User>(list);
         allUsers = list;
     }
