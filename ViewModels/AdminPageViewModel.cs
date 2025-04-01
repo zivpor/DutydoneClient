@@ -52,44 +52,75 @@ public class AdminPageViewModel : ContentPage
     }
 
 
-    #region Single Selection
+    //#region Single Selection
 
 
-    private User selectedUser1;
-    public User SelectedUser1
+    //private User selectedUser1;
+    //public User SelectedUser1
+    //{
+    //    get
+    //    {
+    //        return this.selectedUser1;
+    //    }
+    //    set
+    //    {
+    //        this.selectedUser1 = value;
+    //        OnSingleSelectUser(selectedUser1);
+    //        OnPropertyChanged();
+    //    }
+    //}
+
+
+
+    //private async void OnSingleSelectUser(User p)
+    //{
+    //    if (p != null)
+    //    {
+    //        var navParam = new Dictionary<string, object>
+    //            {
+    //                {"selectedUser1",p }
+    //            };
+    //        await Shell.Current.GoToAsync("UserInfo", navParam);
+
+    //        SelectedUser1 = null;
+
+    //    }
+    //}
+    //#endregion
+    #endregion
+
+
+    #region Filter
+
+    public void Sort()
+    {
+        if (UserName != null || UserName != "")
+        {
+            List<User> temp = allUsers.Where(u => u.Username.Contains(UserName)).ToList();
+            Users = new ObservableCollection<User>(temp);
+        }
+        else
+        {
+            Users = new ObservableCollection<User>(allUsers);
+        }
+
+    }
+    private string userName;
+    public string UserName
     {
         get
         {
-            return this.selectedUser1;
+            return userName;
         }
         set
         {
-            this.selectedUser1 = value;
-            OnSingleSelectUser(selectedUser1);
-            OnPropertyChanged();
-        }
-    }
-
-
-
-    private async void OnSingleSelectUser(User p)
-    {
-        if (p != null)
-        {
-            var navParam = new Dictionary<string, object>
-                {
-                    {"selectedUser1",p }
-                };
-            await Shell.Current.GoToAsync("UserInfo", navParam);
-
-            SelectedUser1 = null;
-
+            userName = value;
+            //Sort();
+            OnPropertyChanged("UserName");
+            Sort();
         }
     }
     #endregion
-    #endregion
-
-   
 
 
     #region Block
@@ -124,12 +155,14 @@ public class AdminPageViewModel : ContentPage
             u.IsBlocked = false;
             await proxy.Block(u);
             BlockPic = "block.png"; // First image
+            u.ProfileImagePath = "";//לשאול את עופר
         }
         else
         {
             u.IsBlocked = true;
             await proxy.Block(u);
-            BlockPic = "unlocked.png"; // Second image
+            BlockPic = "unblock.png"; // Second image
+            u.ProfileImagePath = "";//לשאול את עופר
         }
 
     }
