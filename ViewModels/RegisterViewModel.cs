@@ -282,7 +282,8 @@ public class RegisterViewModel : ViewModelBase
             {
                 Username = Name,
                 Email = Email,
-                UserPassword = Password
+                UserPassword = Password,
+                ProfileImagePath=""
                 
 
             };
