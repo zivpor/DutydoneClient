@@ -25,6 +25,8 @@ namespace DutydoneClient.Models
         public int? GroupId { get; set; }
 
         public int? StatusId { get; set; }
+        public string? TaskDescription { get; set; }
+        public string? TaskUpdate { get; set; }
         public string StatusName
         {
             get
@@ -61,6 +63,8 @@ namespace DutydoneClient.Models
             this.StatusId = task.StatusId;
             this.TaskId = task.TaskId;
             this.DueDay = task.DueDay;
+            this.TaskDescription = task.TaskDescription;
+            this.TaskUpdate = task.TaskUpdate;
         }
     }
 }

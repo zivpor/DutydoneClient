@@ -49,6 +49,20 @@
                         ItemsSource="{Binding TaskTypes}"
                         SelectedItem="{Binding SelectedTaskType}" />
                 </Grid>
+                <Entry Placeholder="Type Task Description" Text="{Binding Description}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Entry Placeholder="Type Task Update" Text="{Binding Update}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
 
                 <Button
                     Command="{Binding AddTaskCommand}"

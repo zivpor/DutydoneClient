@@ -3,6 +3,7 @@ using DutydoneClient.Services;
 using System.Collections.ObjectModel;
 
 
+
 namespace DutydoneClient.ViewModels;
 [QueryProperty("Group", "group")]
 public class AddTaskViewModel : ViewModelBase
@@ -36,8 +37,9 @@ public class AddTaskViewModel : ViewModelBase
     }
 
     public Command AddTaskCommand { get; }
-    private bool showNameError;
+    
     #region Name
+    private bool showNameError;
     public bool ShowNameError
     {
         get => showNameError;
@@ -231,6 +233,84 @@ public class AddTaskViewModel : ViewModelBase
 
 
     #endregion
+    #region TaskDescription
+    private bool showDescriptionError;
+    public bool ShowDescriptionError
+    {
+        get => showDescriptionError;
+        set
+        {
+            showDescriptionError = value;
+            OnPropertyChanged("ShowDescriptionError");
+        }
+    }
+    private string description;
+
+    public string Description
+    {
+        get => description;
+        set
+        {
+            description = value;
+            ValidateName();
+            OnPropertyChanged("Description");
+        }
+    }
+    private string descriptionError;
+
+    public string DescriptionError
+    {
+        get => descriptionError;
+        set
+        {
+            descriptionError = value;
+            OnPropertyChanged("DescriptionError");
+        }
+    }
+    private void ValidateDescription()
+    {
+        this.ShowDescriptionError = string.IsNullOrEmpty(Description);
+    }
+    #endregion
+    #region TaskUpadte
+    private bool showUpadteError;
+    public bool ShowUpadteError
+    {
+        get => showUpadteError;
+        set
+        {
+            showUpadteError = value;
+            OnPropertyChanged("ShowUpadteError");
+        }
+    }
+    private string upadte;
+
+    public string Upadte
+    {
+        get => upadte;
+        set
+        {
+            upadte = value;
+            ValidateName();
+            OnPropertyChanged("Upadte");
+        }
+    }
+    private string upadteError;
+
+    public string UpadteError
+    {
+        get => upadteError;
+        set
+        {
+            upadteError = value;
+            OnPropertyChanged("UpadteError");
+        }
+    }
+    private void ValidateUpadte()
+    {
+        this.ShowUpadteError = string.IsNullOrEmpty(Upadte);
+    }
+    #endregion
     public async void AddTask()
     {
         ValidateName();
@@ -248,8 +328,10 @@ public class AddTaskViewModel : ViewModelBase
                 UserId = ((App)Application.Current).LoggedInUser.UserId,
                 DueDay = taskActualDate,
                 StatusId = 1,
-                GroupId = Group.GroupId
-
+                GroupId = Group.GroupId,
+                TaskDescription= Description,
+                TaskUpdate=upadte
+                
             };
 
             //Call the Register method on the proxy to register the new user
