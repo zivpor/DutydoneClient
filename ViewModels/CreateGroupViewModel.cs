@@ -17,7 +17,11 @@ public class CreateGroupViewModel : ViewModelBase
         this.proxy = proxy;
         CreateCommand = new Command(Create);
         NameError = "Name is required";
+        UploadPhotoCommand = new Command(OnUploadPhoto);
+        PhotoURL = proxy.GetDefaultGroupProfilePhotoUrl();
+        LocalPhotoPath = "";
         
+
     }
     public Command CreateCommand { get; }
     private bool showNameError;
@@ -84,9 +88,67 @@ public class CreateGroupViewModel : ViewModelBase
         }
     }
 
-    
 
-    
+
+
+    #endregion
+    #region Photo
+
+    private string photoURL;
+
+    public string PhotoURL
+    {
+        get => photoURL;
+        set
+        {
+            photoURL = value;
+            OnPropertyChanged("PhotoURL");
+        }
+    }
+
+    private string localPhotoPath;
+
+    public string LocalPhotoPath
+    {
+        get => localPhotoPath;
+        set
+        {
+            localPhotoPath = value;
+            OnPropertyChanged("LocalPhotoPath");
+        }
+    }
+
+    public Command UploadPhotoCommand { get; }
+    //This method open the file picker to select a photo
+    private async void OnUploadPhoto()
+    {
+        try
+        {
+            var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+            {
+                Title = "Please select a photo",
+            });
+
+            if (result != null)
+            {
+                // The user picked a file
+                this.LocalPhotoPath = result.FullPath;
+                this.PhotoURL = result.FullPath;
+            }
+        }
+        catch (Exception ex)
+        {
+        }
+
+    }
+
+    private void UpdatePhotoURL(string virtualPath)
+    {
+        Random r = new Random();
+        PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
+        LocalPhotoPath = "";
+    }
+
     #endregion
     public async void Create()
     {
@@ -118,7 +180,18 @@ public class CreateGroupViewModel : ViewModelBase
 
                 InServerCall = false;
                 newGroup.GroupId = groupId.Value;
-                ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                if (localPhotoPath != null)
+                {
+                    
+
+                    newGroup = await proxy.UploadGroupProfileImage(LocalPhotoPath);
+                    if (newGroup == null)
+                    {
+                        string errorMsg = "Adding group succeeded but photo failed to be uploaded.";
+                        await Application.Current.MainPage.DisplayAlert("Adding group", errorMsg, "ok");
+                    }
+                }
+               ((App)(Application.Current)).MainPage.Navigation.PopAsync();
             }
             else
             {

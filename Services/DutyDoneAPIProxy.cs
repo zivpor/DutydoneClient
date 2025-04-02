@@ -253,6 +253,41 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
+        public async Task<Group?> UploadGroupProfileImage(string imagePath)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}uploadprofileimage";
+            try
+            {
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Group? result = JsonSerializer.Deserialize<Group>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public string GetImagesBaseAddress()
         {
             return DutyDoneAPIProxy.ImageBaseAddress;
@@ -261,6 +296,10 @@ namespace DutydoneClient.Services
         public string GetDefaultProfilePhotoUrl()
         {
             return $"{DutyDoneAPIProxy.ImageBaseAddress}/profileImages/default.png";
+        }
+        public string GetDefaultGroupProfilePhotoUrl()
+        {
+            return $"{DutyDoneAPIProxy.ImageBaseAddress}/profileImages/groupDefault.png";
         }
         public async Task<int?> AddTask(Models.Task task)
         {
