@@ -56,7 +56,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                 </Grid>
-                <Entry Placeholder="Type Task Update" Text="{Binding Update}" />
+                <Entry Placeholder="Type Task Update" Text="{Binding Upadte}" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
