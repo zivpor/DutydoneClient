@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DutydoneClient.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,15 @@ namespace DutydoneClient.Models
                     return "Unknown";
                 }
                 return "Unknown";
+            }
+        }
+
+        public string FullImageUrl
+        {
+
+            get
+            {
+                return DutyDoneAPIProxy.BaseAddress + this.GroupProfileImagePath; 
             }
         }
         public Group() { }

@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DutydoneClient.Views.ProfilePage"
-             Title="ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="DutydoneClient.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:DutydoneClient.Models"
+    xmlns:viewmodels="clr-namespace:DutydoneClient.ViewModels"
+    Title="ProfilePage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="5"
+                    BorderColor="Black"
+                    CornerRadius="70"
+                    HeightRequest="100"
+                    HorizontalOptions="Start"
+                    WidthRequest="100">
+                    <Image Source="{Binding PhotoURL}" WidthRequest="200" />
+                </Frame>
+                <Label
+                    Grid.Column="1"
+                    FontFamily="SA"
+                    FontSize="45"
+                    HorizontalOptions="Start"
+                    Text="{Binding Name}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontFamily="SA"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding TheUser}"
+                    Text="edit profile"
+                    TextColor="Blue">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EditCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <StackLayout Margin="0,0,0,0" HorizontalOptions="Center" />
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

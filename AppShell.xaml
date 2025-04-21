@@ -29,6 +29,10 @@
             Title="Admin" Icon="admin3.png"
             ContentTemplate="{DataTemplate views:AdminPage}"
             Route="Admin" />
+        <ShellContent
+            Title="Profile" Icon="profile.png" 
+            ContentTemplate="{DataTemplate views:ProfilePage}"
+            Route="Profile"/>
 
     </FlyoutItem>
     <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
