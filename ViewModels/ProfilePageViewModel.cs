@@ -1,6 +1,8 @@
 using DutydoneClient.Models;
 using DutydoneClient.Services;
+using DutydoneClient.Views;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace DutydoneClient.ViewModels;
 
@@ -10,7 +12,7 @@ public class ProfilePageViewModel : ViewModelBase
     public ProfilePageViewModel(DutyDoneAPIProxy proxy)
 	{
 		this.proxy = proxy;
-        //EditCommmand=new Command(OnEdit);
+        EditCommmand = new Command(OnEdit);
     }
     private User theUser;
     public User TheUser
@@ -56,9 +58,9 @@ public class ProfilePageViewModel : ViewModelBase
         }
     }
     #endregion
-    public Command EditCommmand { get; set; }
-    //private void OnEdit() 
-    //{
-    //    ((App)Application.Current).MainPage.Navigation.PushAsync(<EditProfile>());
-    //}
+    public ICommand EditCommmand { get; set; }
+    private async void OnEdit()
+    {
+        await Shell.Current.GoToAsync("editProfile");
+    }
 }

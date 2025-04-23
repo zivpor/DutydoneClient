@@ -19,7 +19,7 @@ namespace DutydoneClient
             Routing.RegisterRoute("groupPage", typeof(GroupPage));
             Routing.RegisterRoute("manageredGroupPage", typeof(ManageredGroupPage));
             Routing.RegisterRoute("addTask", typeof(AddTask));
-
+            Routing.RegisterRoute("editProfile",typeof(EditProfile));
         }
     }
 }
