@@ -12,7 +12,7 @@
             x:Name="theCollectionView"
             ItemsLayout="VerticalGrid, 1"
             ItemsSource="{Binding Users}"
-            SelectionMode="None">
+            SelectionMode="Single" SelectedItem="{Binding SelectedUser}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:User">
                     <SwipeView>

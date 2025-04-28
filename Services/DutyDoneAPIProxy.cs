@@ -14,7 +14,7 @@ namespace DutydoneClient.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://v8tc37xc-5132.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://v8tc37xc-5132.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://v8tc37xc-5132.euw.devtunnels.ms/";
 
         public DutyDoneAPIProxy()
         {

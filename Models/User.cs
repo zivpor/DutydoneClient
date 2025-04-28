@@ -16,7 +16,7 @@ public class User
 
         get
         {
-            return DutyDoneAPIProxy.BaseAddress+this.ProfileImagePath;
+            return DutyDoneAPIProxy.ImageBaseAddress + this.ProfileImagePath;
         }
     }
     public User() { }

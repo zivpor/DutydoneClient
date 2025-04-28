@@ -44,7 +44,7 @@
                     FontFamily="SA"
                     FontSize="Medium"
                     HorizontalOptions="Center"
-                    IsVisible="{Binding TheUser}"
+                    IsVisible="{Binding CanEdit}"
                     Text="edit profile"
                     TextColor="Blue">
                     <Label.GestureRecognizers>

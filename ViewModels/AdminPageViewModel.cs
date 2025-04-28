@@ -52,41 +52,41 @@ public class AdminPageViewModel : ContentPage
     }
 
 
-    //#region Single Selection
+    #region Single Selection
 
 
-    //private User selectedUser1;
-    //public User SelectedUser1
-    //{
-    //    get
-    //    {
-    //        return this.selectedUser1;
-    //    }
-    //    set
-    //    {
-    //        this.selectedUser1 = value;
-    //        OnSingleSelectUser(selectedUser1);
-    //        OnPropertyChanged();
-    //    }
-    //}
+    private User selectedUser;
+    public User SelectedUser
+    {
+        get
+        {
+            return this.selectedUser;
+        }
+        set
+        {
+            this.selectedUser = value;
+            OnSingleSelectUser(selectedUser);
+            OnPropertyChanged();
+        }
+    }
 
 
 
-    //private async void OnSingleSelectUser(User p)
-    //{
-    //    if (p != null)
-    //    {
-    //        var navParam = new Dictionary<string, object>
-    //            {
-    //                {"selectedUser1",p }
-    //            };
-    //        await Shell.Current.GoToAsync("UserInfo", navParam);
+    private async void OnSingleSelectUser(User p)
+    {
+        if (p != null)
+        {
+            var navParam = new Dictionary<string, object>
+                {
+                    {"TheUser",p }
+                };
+            await Shell.Current.GoToAsync("Profile", navParam);
 
-    //        SelectedUser1 = null;
+            SelectedUser = null;
 
-    //    }
-    //}
-    //#endregion
+        }
+    }
+    #endregion
     #endregion
 
 

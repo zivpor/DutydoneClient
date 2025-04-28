@@ -6,14 +6,17 @@ using System.Windows.Input;
 
 namespace DutydoneClient.ViewModels;
 
+[QueryProperty("TheUser", "TheUser")]
 public class ProfilePageViewModel : ViewModelBase
 {
     private DutyDoneAPIProxy proxy;
     public ProfilePageViewModel(DutyDoneAPIProxy proxy)
 	{
 		this.proxy = proxy;
-        EditCommmand = new Command(OnEdit);
+        EditCommand = new Command(OnEdit);
+        TheUser = ((App)Application.Current).LoggedInUser;
     }
+    
     private User theUser;
     public User TheUser
     {
@@ -21,9 +24,29 @@ public class ProfilePageViewModel : ViewModelBase
         set
         {
             theUser = value;
+            if (theUser != null)
+            {
+                User LoggedInUser = ((App)Application.Current).LoggedInUser;
+                CanEdit = (LoggedInUser.UserId == theUser.UserId);
+                Name = theUser.Username;
+                PhotoURL = theUser.FullImageUrl;
+
+            }
             OnPropertyChanged("TheUser");
         }
     }
+
+    private bool canEdit;
+    public bool CanEdit
+    {
+        get => canEdit;
+        set
+        {
+            canEdit = value;
+            OnPropertyChanged();
+        }
+    }
+
     #region Name
     private string name;
     public string Name
@@ -58,7 +81,7 @@ public class ProfilePageViewModel : ViewModelBase
         }
     }
     #endregion
-    public ICommand EditCommmand { get; set; }
+    public ICommand EditCommand { get; set; }//EditCommand
     private async void OnEdit()
     {
         await Shell.Current.GoToAsync("editProfile");
