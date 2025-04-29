@@ -21,6 +21,7 @@ namespace DutydoneClient
             Routing.RegisterRoute("addTask", typeof(AddTask));
             Routing.RegisterRoute("editProfile",typeof(EditProfile));
             Routing.RegisterRoute("Profile",typeof(ProfilePage));
+            Routing.RegisterRoute("addPeople", typeof(AddPeople));
         }
     }
 }
