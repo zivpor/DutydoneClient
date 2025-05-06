@@ -454,6 +454,38 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
+        public async Task<bool> AddUserToGroup()
+        {
+
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}AddUserToGroup";
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 
 }
