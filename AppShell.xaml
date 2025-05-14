@@ -9,6 +9,10 @@
     Title="DutydoneClient">
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+        <!--<ShellContent
+    Title="Home" Icon="home.png"
+    ContentTemplate="{DataTemplate views:HomePage}"
+    Route="Home" />-->
         <ShellContent 
             Title="Calender" Icon="calender3.jpg"
             ContentTemplate="{DataTemplate views:Calender}"
@@ -21,10 +25,7 @@
             Title="Groups" Icon="group2.png"
             ContentTemplate="{DataTemplate views:Groups}"
             Route="Groups" />
-        <ShellContent
-            Title="Home" Icon="home.png"
-            ContentTemplate="{DataTemplate views:HomePage}"
-            Route="Home" />
+        
         <ShellContent IsVisible="{Binding IsAdmin}"
             Title="Admin" Icon="admin3.png"
             ContentTemplate="{DataTemplate views:AdminPage}"

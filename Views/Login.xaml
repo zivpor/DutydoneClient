@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
-             x:Class="DutydoneClient.Views.Login"
-             Title="Login"
-             x:DataType="viewmodel:LoginViewModel">
+<ContentPage
+    x:Class="DutydoneClient.Views.Login"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
+    Title="Login"
+    x:DataType="viewmodel:LoginViewModel">
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-            <Label
+        <Frame
+            Margin="3"
+            CornerRadius="70"
+            HeightRequest="200"
+            HorizontalOptions="Center"
+            WidthRequest="200">
+            <Image
+                HeightRequest="200"
+                Source="logo.png"
+                WidthRequest="200" />
+        </Frame>
+        <Label
+            FontFamily="Alloha"
             FontSize="60"
             HorizontalOptions="Center"
             Text="Login page"
-            TextColor="LightBlue"
-                FontFamily="Alloha"/>
-            <!--FontFamily="SweetHoney"-->
+            TextColor="LightBlue" />
+        <!--  FontFamily="SweetHoney"  -->
 
-            <Entry
-                FontFamily="SM"
+        <Entry
+            FontFamily="SM"
             Placeholder="enter email"
             PlaceholderColor="LightGrey"
-            Text="{Binding Email}"/>
+            Text="{Binding Email}" />
 
-            <Entry
-                FontFamily="SM"
+        <Entry
+            FontFamily="SM"
             IsPassword="True"
             Placeholder="enter password"
             PlaceholderColor="LightGrey"
-            Text="{Binding Password}"/>
+            Text="{Binding Password}" />
 
-            <HorizontalStackLayout>
-                <Button
+        <HorizontalStackLayout>
+            <Button
+                Command="{Binding LoginCommand}"
                 FontFamily="SM"
+                IsEnabled="{Binding NotInServerCall}"
                 Text="Login"
-                WidthRequest="150"
-                Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
-                <Button
-                                FontFamily="SM"
-
+                WidthRequest="150" />
+            <Button
+                FontFamily="SM"
                 Text="cancel"
                 WidthRequest="150" />
 
-            
+
 
         </HorizontalStackLayout>
-        <Label 
-            TextColor="Black"
-            Text="NO USER?"
+        <Label
             FontFamily="SM"
-            HorizontalOptions="Center"/>
-        <Label 
-        Text="SIGN HERE"
-        TextColor="Blue"
-        HorizontalOptions="Center"
-        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
+            HorizontalOptions="Center"
+            Text="NO USER?"
+            TextColor="Black" />
+        <Label
+            HorizontalOptions="Center"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="SIGN HERE"
+            TextColor="Blue"
+            VerticalOptions="End">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
             </Label.GestureRecognizers>
         </Label>
 

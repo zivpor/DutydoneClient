@@ -47,6 +47,8 @@ namespace DutydoneClient
             builder.Services.AddTransient<EditProfileViewModel>();
             builder.Services.AddTransient<AddPeople>();
             builder.Services.AddTransient<AddPeopleViewModel>();
+            builder.Services.AddTransient<CalenderViewModel>();
+            builder.Services.AddTransient<Calender>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

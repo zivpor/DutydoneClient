@@ -454,26 +454,19 @@ namespace DutydoneClient.Services
                 return null;
             }
         }
-        public async Task<bool> AddUserToGroup()
+        public async Task<bool> AddUserToGroup(string email, int groupId)
         {
 
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}AddUserToGroup";
+            string url = $"{this.baseUrl}AddUserToGroup?email={email}&groupId={groupId}";
             try
             {
                 HttpResponseMessage response = await client.GetAsync(url);
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
-                    return result;
+
+                    return true;
                 }
                 else
                 {
@@ -508,6 +501,39 @@ namespace DutydoneClient.Services
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+        public async Task<List<Models.User>?> GetUsersInGroup(Models.Group group)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetUsersInGroup";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(group);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Models.User>? result = JsonSerializer.Deserialize<List<Models.User>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 
