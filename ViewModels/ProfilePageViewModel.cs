@@ -86,4 +86,10 @@ public class ProfilePageViewModel : ViewModelBase
     {
         await Shell.Current.GoToAsync("editProfile");
     }
+
+    public override void Refresh()
+    {
+        base.Refresh();
+        TheUser = ((App)Application.Current).LoggedInUser;
+    }
 }

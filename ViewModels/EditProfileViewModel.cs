@@ -356,10 +356,11 @@ public class EditProfileViewModel : ViewModelBase
                 }
                 InServerCall = false;
                 await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
+                ((AppShell)Shell.Current).Refresh(typeof(ProfilePageViewModel));
                 ((App)Application.Current).LoggedInUser.Username = Name;
                 ((App)Application.Current).LoggedInUser.UserPassword = Password;
                 ((App)Application.Current).LoggedInUser.Email = Email;
-                ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Login>());
+                await ((App)Application.Current).MainPage.Navigation.PopAsync();
             }
             else
             {

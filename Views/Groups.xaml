@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
-             xmlns:model="clr-namespace:DutydoneClient.Models"
-             x:Class="DutydoneClient.Views.Groups"
-             Title="Groups"
-             x:DataType="viewmodel:GroupsViewModel">
+<ContentPage
+    x:Class="DutydoneClient.Views.Groups"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DutydoneClient.Models"
+    xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
+    Title="Groups"
+    x:DataType="viewmodel:GroupsViewModel">
     <VerticalStackLayout>
-        <Button WidthRequest="40" HorizontalOptions="End" Command="{Binding CreateGroupCommand}" Text="+" FontSize="30" />
+        <Button
+            Command="{Binding CreateGroupCommand}"
+            FontSize="30"
+            HorizontalOptions="End"
+            Text="+"
+            WidthRequest="40" />
         <Label
+            FontFamily="Alloha"
             FontSize="60"
             HorizontalOptions="Center"
             Text="My Groups"
-            TextColor="LightBlue"
-            FontFamily="Alloha"/>
-        <Label 
+            TextColor="LightBlue" />
+        <Label
+            FontFamily="Alloha"
             FontSize="20"
-            Text="My Managment Groups:"
-            FontFamily="Alloha"/>
-        <CollectionView ItemsSource="{Binding ManagerGroups}"
-                    SelectionMode="Single"
-                    SelectedItem="{Binding ManagerSelectedGroup}">
+            Text="My Managment Groups:" />
+        <CollectionView
+            ItemsSource="{Binding ManagerGroups}"
+            SelectedItem="{Binding ManagerSelectedGroup}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Group">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            
+                            <RowDefinition Height="*" />
+
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--  Profile Image  -->
                         <Border
@@ -48,31 +55,74 @@
                                 Source="{Binding FullImageUrl}"
                                 WidthRequest="50" />
                         </Border>
-                        <StackLayout Padding="10" Grid.Column="1">
+                        <StackLayout Grid.Column="1" Padding="10">
 
-                        <Label Text="{Binding GroupName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                        <Label Text="{Binding GroupTypeName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                        
-                    </StackLayout>
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding GroupName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding GroupTypeName}" />
+
+                        </StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
+
         </CollectionView>
-        <Label 
-    FontSize="20"
-    Text="My Other Groups:"
-    FontFamily="Alloha"/>
-        <CollectionView ItemsSource="{Binding Groups}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedGroup}">
+        <Label
+            FontFamily="Alloha"
+            FontSize="20"
+            Text="My Other Groups:" />
+        <CollectionView
+            ItemsSource="{Binding Groups}"
+            SelectedItem="{Binding SelectedGroup}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Group">
-                    <StackLayout Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
 
-                        <Label Text="{Binding GroupName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                        <Label Text="{Binding GroupTypeName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-                    </StackLayout>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Profile Image  -->
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            HeightRequest="50"
+                            StrokeThickness="2"
+                            WidthRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25" />
+                            </Border.StrokeShape>
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="50"
+                                Source="{Binding FullImageUrl}"
+                                WidthRequest="50" />
+                        </Border>
+                        <StackLayout Grid.Column="1" Padding="10">
+
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding GroupName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontFamily="SM"
+                                FontSize="Small"
+                                Text="{Binding GroupTypeName}" />
+                        </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

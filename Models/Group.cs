@@ -35,7 +35,7 @@ namespace DutydoneClient.Models
 
             get
             {
-                return DutyDoneAPIProxy.BaseAddress + this.GroupProfileImagePath; 
+                return DutyDoneAPIProxy.ImageBaseAddress + this.GroupProfileImagePath; 
             }
         }
         public Group() { }
