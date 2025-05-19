@@ -23,14 +23,41 @@
                     SelectedItem="{Binding ManagerSelectedGroup}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Group">
-                    <StackLayout Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--  Profile Image  -->
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            HeightRequest="50"
+                            StrokeThickness="2"
+                            WidthRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25" />
+                            </Border.StrokeShape>
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="50"
+                                Source="{Binding FullImageUrl}"
+                                WidthRequest="50" />
+                        </Border>
+                        <StackLayout Padding="10" Grid.Column="1">
 
                         <Label Text="{Binding GroupName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
                         <Label Text="{Binding GroupTypeName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
                         
                     </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            
         </CollectionView>
         <Label 
     FontSize="20"

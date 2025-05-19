@@ -27,6 +27,7 @@ namespace DutydoneClient
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddSingleton<DutyDoneAPIProxy>();
+            builder.Services.AddSingleton<SendEmailService>();
             builder.Services.AddTransient<Groups>();
             builder.Services.AddTransient<GroupsViewModel>();
             builder.Services.AddTransient<CreateGroup>();
