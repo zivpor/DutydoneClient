@@ -89,4 +89,9 @@ public class ManageredGroupPageViewModel : ViewModelBase
         };
         await Shell.Current.GoToAsync("addPeople", navParam);
     }
+    public override void Refresh()
+    {
+        base.Refresh();
+        ReadDataFromServer();
+    }
 }

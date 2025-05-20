@@ -84,4 +84,9 @@ public class TasksListViewModel : ViewModelBase
 			}
 		}
 	}
+    public override void Refresh()
+    {
+        base.Refresh();
+		ReadTasks();
+    }
 }

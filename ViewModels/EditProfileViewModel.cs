@@ -19,6 +19,7 @@ public class EditProfileViewModel : ViewModelBase
         User = u;
         LocalPhotoPath = "";
         InServerCall = false;
+        UploadPhotoCommand = new Command(OnUploadPhoto);
     }
 
     #region User

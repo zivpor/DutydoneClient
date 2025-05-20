@@ -3,78 +3,91 @@
     x:Class="DutydoneClient.Views.CreateGroup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="CreateGroup">
-    <StackLayout>
+    Title="CreateGroup"
+    BackgroundColor="#F8F9FA">
+
+    <StackLayout Padding="20" Spacing="20">
+
+        <!-- Title -->
         <Label
             FontFamily="Alloha"
             FontSize="60"
             HorizontalOptions="Center"
             Text="Create Your Group"
-            TextColor="LightBlue" />
-        <Grid>
-            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
-                <Frame
-                    Margin="10"
-                    Padding="5"
-                    BorderColor="Black">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image
-                            x:Name="theImageBug"
-                            HeightRequest="150"
-                            Source="{Binding PhotoURL}" />
-                        <Label
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            Text="Click Here To Upload Photo!"
-                            TextColor="Blue"
-                            VerticalOptions="End">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
-                </Frame>
+            TextColor="Lavender" />
 
-                <!--  User Name  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Group Name" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowNameError}"
-                        Text="{Binding NameError}" />
-                </Grid>
-                <Entry Placeholder="Type Group Name" Text="{Binding Name}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Group Type" />
-                    <Picker
-                        Grid.Column="1"
-                        ItemDisplayBinding="{Binding GroupTypeName}"
-                        ItemsSource="{Binding GroupTypes}"
-                        SelectedItem="{Binding SelectedGroupType}" />
-                </Grid>
+        <!-- Upload Image Section -->
+        <Frame
+            Margin="0"
+            Padding="10"
+            BorderColor="#CCCCCC"
+            CornerRadius="10"
+            BackgroundColor="White">
 
-                <Button
-                    Command="{Binding CreateCommand}"
-                    IsEnabled="{Binding NotInServerCall}"
-                    Text="Create" />
+            <Grid RowDefinitions="Auto,Auto">
 
+                <Image
+                    x:Name="theImageBug"
+                    HeightRequest="150"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill"
+                    Source="{Binding PhotoURL}" />
 
-            </VerticalStackLayout>
-        </Grid>
+                <Label
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Click Here To Upload Photo!"
+                    TextColor="#3A86FF"
+                    FontSize="14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+
+        <!-- Group Form -->
+        <VerticalStackLayout Padding="10" Spacing="16" IsEnabled="{Binding NotInServerCall}">
+
+            <!-- Group Name -->
+            <Grid ColumnDefinitions="*,*" >
+                <Label Grid.Column="0" Text="Group Name"  FontSize="16"/>
+                <Label Grid.Column="1"
+                       IsVisible="{Binding ShowNameError}"
+                       Text="{Binding NameError}"
+                       TextColor="Red"
+                       FontSize="14"/>
+            </Grid>
+
+            <Entry
+                Placeholder="Type Group Name"
+                Text="{Binding Name}"
+                BackgroundColor="White"
+               
+                HeightRequest="45" />
+
+            <!-- Group Type -->
+            <Grid ColumnDefinitions="*,*" >
+                <Label Grid.Column="0" Text="Group Type"  FontSize="16"/>
+                <Picker
+                    Grid.Column="1"
+                    ItemDisplayBinding="{Binding GroupTypeName}"
+                    ItemsSource="{Binding GroupTypes}"
+                    SelectedItem="{Binding SelectedGroupType}" />
+            </Grid>
+
+            <!-- Submit Button -->
+            <Button
+                Command="{Binding CreateCommand}"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Create"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                FontSize="18"
+                HeightRequest="50"
+                CornerRadius="25" />
+
+        </VerticalStackLayout>
     </StackLayout>
 </ContentPage>

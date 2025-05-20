@@ -3,111 +3,137 @@
     x:Class="DutydoneClient.Views.TasksList"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="TasksList">
-    <VerticalStackLayout>
+    Title="Tasks List"
+    BackgroundColor="#F8F9FA">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <!-- Page Title -->
         <Label
             FontFamily="Alloha"
-            FontSize="60"
+            FontSize="48"
             HorizontalOptions="Center"
-            Text="List page"
-            TextColor="LightBlue" />
-        <Label Text="filter by:" />
-        <Picker
-            Grid.Column="1"
-            ItemDisplayBinding="{Binding TaskTypeName}"
-            ItemsSource="{Binding TaskTypes}"
-            SelectedItem="{Binding SelectedType}" />
-        <Grid Padding="10"
-    HorizontalOptions="FillAndExpand"
-    VerticalOptions="Start">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            Text="Task List"
+            TextColor="Lavender" />
+
+        <!-- Filter -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label
+                Text="Filter by:"
+                FontSize="16"
+                VerticalOptions="Center" />
+            <Picker
+                ItemDisplayBinding="{Binding TaskTypeName}"
+                ItemsSource="{Binding TaskTypes}"
+                SelectedItem="{Binding SelectedType}"
+                FontSize="14"
+                WidthRequest="200" />
+        </HorizontalStackLayout>
+
+        <!-- Header Row -->
+        <Grid Padding="10" BackgroundColor="#E0E0E0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Label 
-                Grid.Column="0"
+
+            <Label
                 Text="Task Name"
-                 FontAttributes="Bold"/>
-            <Label 
-                 Grid.Column="1"
-                Text="Task Type"
-                 FontAttributes="Bold"/>
-            <Label 
+                FontAttributes="Bold"
+                FontSize="14"
+                TextColor="#333" />
+            <Label
+                Grid.Column="1"
+                Text="Type"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="#333" />
+            <Label
                 Grid.Column="2"
-                Text="Task Status"
-                 FontAttributes="Bold"/>
-            <Label 
+                Text="Status"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="#333" />
+            <Label
                 Grid.Column="3"
-                Text="Task DueDate"
-                 FontAttributes="Bold"/>
+                Text="Due Date"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="#333" />
         </Grid>
+
+        <!-- Tasks Collection -->
         <CollectionView
             x:Name="theCollectionView"
-            ItemsLayout="VerticalList"
-            ItemsSource="{Binding FilterdTasks}">
+            ItemsSource="{Binding FilterdTasks}"
+            ItemsLayout="VerticalList">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems>
                                 <SwipeItem
-                                    
                                     Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DoneCommand}"
                                     CommandParameter="{Binding}"
                                     IconImageSource="done.png"
-                                    Text="Done" />
+                                    Text="Done"
+                                    BackgroundColor="#4CAF50"
+                                    />
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        
-                        <Grid
+
+                        <!-- Task Item -->
+                        <Frame
+                            Margin="0,5"
                             Padding="10"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Start">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding TaskName}"
-                               FontSize="13"/>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Text="{Binding TypeName}"
-                                FontSize="11"/>
+                            CornerRadius="10"
+                            BackgroundColor="White"
+                            BorderColor="#DDDDDD"
+                            HasShadow="True">
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                HorizontalOptions="Center"
-                                Text="{Binding StatusName}" 
-                                FontSize="11"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="3"
-                                HorizontalOptions="Center"
-                                Text="{Binding DueDayTime, StringFormat='{0:MMMM dd, yyyy}'}" 
-                                FontSize="11"/>
-
-                        </Grid>
+                                <Label
+                                    Text="{Binding TaskName}"
+                                    FontSize="14"
+                                    TextColor="#222"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding TypeName}"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    TextColor="#555" />
+                                <Label
+                                    Grid.Column="2"
+                                    Text="{Binding StatusName}"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    TextColor="#555" />
+                                <Label
+                                    Grid.Column="3"
+                                    Text="{Binding DueDayTime, StringFormat='{0:MMM dd, yyyy}'}"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    TextColor="#555" />
+                            </Grid>
+                        </Frame>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
 
+    </VerticalStackLayout>
 </ContentPage>
+

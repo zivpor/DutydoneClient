@@ -5,57 +5,74 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:DutydoneClient.Models"
     xmlns:viewmodels="clr-namespace:DutydoneClient.ViewModels"
-    Title="ProfilePage">
+    Title="ProfilePage"
+    BackgroundColor="#F8F9FA">
+
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Profile Info -->
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-
-
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+
+                <!-- Profile Picture -->
                 <Frame
                     Grid.Row="0"
+                    Grid.RowSpan="2"
                     Grid.Column="0"
-                    Margin="5"
-                    BorderColor="Black"
-                    CornerRadius="70"
+                    Padding="0"
+                    Margin="0"
                     HeightRequest="100"
+                    WidthRequest="100"
+                    CornerRadius="50"
+                    HasShadow="True"
+                    BorderColor="#E0E0E0"
+                    BackgroundColor="White"
                     HorizontalOptions="Start"
-                    WidthRequest="100">
-                    <Image Source="{Binding PhotoURL}" WidthRequest="200" />
+                    VerticalOptions="Center">
+                    <Image
+                        Source="{Binding PhotoURL}"
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Clip="EllipseGeometry Center='50,50' RadiusX='50' RadiusY='50'" />
                 </Frame>
+
+                <!-- Name -->
                 <Label
                     Grid.Column="1"
-                    FontFamily="SA"
-                    FontSize="45"
-                    HorizontalOptions="Start"
-                    Text="{Binding Name}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="{Binding Name}"
+                    FontSize="28"
                     FontAttributes="Bold"
-                    FontFamily="SA"
-                    FontSize="Medium"
-                    HorizontalOptions="Center"
+                    TextColor="#333333"
+                    VerticalOptions="End"
+                    Margin="10,0,0,0" />
+
+                <!-- Edit Profile -->
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="Edit Profile"
+                    FontSize="16"
+                    TextColor="#007AFF"
                     IsVisible="{Binding CanEdit}"
-                    Text="edit profile"
-                    TextColor="Blue">
+                    Margin="10,4,0,0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding EditCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
             </Grid>
 
-            <StackLayout Margin="0,0,0,0" HorizontalOptions="Center" />
-
-
+            <!-- Optional Future Content Placeholder -->
+            <StackLayout Margin="0,20,0,0" HorizontalOptions="Center" />
 
         </VerticalStackLayout>
     </ScrollView>

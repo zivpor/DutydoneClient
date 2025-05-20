@@ -64,7 +64,7 @@
 
                     <Button
                         Command="{Binding EditCommand}"
-                        Style="{StaticResource buttonStyle}"
+                        
                         IsEnabled="{Binding NotInServerCall}"
                         Text="Edit" />
 
@@ -83,12 +83,12 @@
                     </Grid.RowDefinitions>-->
                         <Label
                             Grid.Column="0"
-                            Style="{StaticResource labelStyle}"
+                            
                             Text="Username" />
                         <Label
                             Grid.Column="1"
                             IsVisible="{Binding ShowNameError}"
-                            Style="{StaticResource labelErrorStyle}"
+                            
                             Text="{Binding NameError}" />
 
                     </Grid>
@@ -102,7 +102,7 @@
                             Grid.Column="0"
                             IsEnabled="{Binding Change}"
                             Placeholder="Type Username"
-                            Style="{StaticResource entryStyle}"
+                            
                             Text="{Binding Name}" />
 
 
@@ -118,12 +118,12 @@
                         </Grid.ColumnDefinitions>
                         <Label
                             Grid.Column="0"
-                            Style="{StaticResource labelStyle}"
+                            
                             Text="Email" />
                         <Label
                             Grid.Column="1"
                             IsVisible="{Binding ShowEmailError}"
-                            Style="{StaticResource error}"
+                            
                             Text="{Binding EmailError}" />
                     </Grid>
 
@@ -155,12 +155,12 @@
                         </Grid.ColumnDefinitions>
                         <Label
                             Grid.Column="0"
-                            Style="{StaticResource labelStyle}"
+                            
                             Text="Password" />
                         <Label
                             Grid.Column="1"
                             IsVisible="{Binding ShowPasswordError}"
-                            Style="{StaticResource error}"
+                            
                             Text="{Binding PasswordError}" />
                     </Grid>
                     <Grid>
@@ -192,7 +192,7 @@
                             Command="{Binding SaveCommand}"
                             IsEnabled="{Binding NotInServerCall}"
                             IsVisible="{Binding Change}"
-                            Style="{StaticResource buttonStyle}"
+                           
                             Text="Save" />
 
                     </Grid>

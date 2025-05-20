@@ -6,91 +6,120 @@
     xmlns:model="clr-namespace:DutydoneClient.Models"
     xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
     Title="AddPeople"
-    Padding="10">
-    <VerticalStackLayout>
+    Padding="20"
+    BackgroundColor="#F8F9FA">
+
+    <VerticalStackLayout Spacing="20">
+        <!-- Header Section -->
         <Label
             FontFamily="Alloha"
             FontSize="60"
             HorizontalOptions="Center"
-            Text="Add poeple"
-            TextColor="Lavender" />
-        <Grid>
+            Text="Add People"
+            TextColor="#3A86FF" />
+
+        <!-- Email Entry and Add Button -->
+        <Grid ColumnSpacing="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <Entry
                 Grid.Column="0"
                 FontFamily="SM"
-                Placeholder="enter the email of the user"
-                PlaceholderColor="LightGrey"
-                Text="{Binding UsersEmail}" />
+                Placeholder="Enter the email of the user"
+                PlaceholderColor="LightGray"
+                Text="{Binding UsersEmail}"
+                BackgroundColor="White"
+                
+                HeightRequest="45" />
 
             <Button
                 Grid.Column="1"
-                Padding="0,0,0,1"
                 Command="{Binding AddCommand}"
                 FontSize="25"
                 HeightRequest="45"
-                Text="+"
-                WidthRequest="45" />
+                WidthRequest="45"
+                CornerRadius="22"
+                BackgroundColor="#3A86FF"
+                TextColor="White"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="+" />
         </Grid>
-        <Label Text="the users in the group:" Padding="0,10,0,10"/>
+
+        <!-- User List Section -->
+        <Label
+            Text="The users in the group:"
+            FontSize="18"
+            FontAttributes="Bold"
+            TextColor="#212121"
+            HorizontalOptions="Center" />
+
+        <!-- Users Collection -->
         <CollectionView
-            x:Name="theCollectionView"
             ItemsLayout="VerticalGrid, 1"
             ItemsSource="{Binding Users}"
             SelectedItem="{Binding SelectedUser}"
-            SelectionMode="Single">
+            SelectionMode="Single"
+            BackgroundColor="White"
+            >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:User">
                     <SwipeView>
+                        <SwipeView.LeftItems>
+                            <!-- Swipe to remove item (if needed) -->
+                            <SwipeItems>
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.RemoveUserCommand}"
+                                    CommandParameter="{Binding}"
+                                    Text="Remove"
+                                    IconImageSource="remove.png" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
 
-                        <!--  Content  -->
-                        <Grid>
+                        <!-- Content Grid -->
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
-
                             </Grid.ColumnDefinitions>
 
-                            <!--  Profile Image  -->
-                            <Border
+                            <!-- Profile Image -->
+                            <Frame
                                 Grid.Column="0"
-                                BackgroundColor="Transparent"
                                 HeightRequest="50"
-                                StrokeThickness="2"
-                                WidthRequest="50">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="25" />
-                                </Border.StrokeShape>
+                                WidthRequest="50"
+                                CornerRadius="25"
+                                Padding="0"
+                                BackgroundColor="White"
+                                BorderColor="#B0BEC5">
                                 <Image
                                     Aspect="AspectFill"
                                     HeightRequest="50"
                                     Source="{Binding FullImageUrl}"
                                     WidthRequest="50" />
-                            </Border>
+                            </Frame>
 
-                            <Label
-                                Grid.Column="1"
-                                Margin="20"
-                                Text="{Binding Username}" />
-
-                            <Label
-                                Grid.Column="2"
-                                Grid.ColumnSpan="2"
-                                Margin="20"
-                                Text="{Binding Email}" />
+                            <!-- User Info -->
+                            <StackLayout Grid.Column="1" Padding="10">
+                                <Label
+                                    Text="{Binding Username}"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="#212121" />
+                                <Label
+                                    Text="{Binding Email}"
+                                    FontSize="14"
+                                    TextColor="#555" />
+                            </StackLayout>
                         </Grid>
                     </SwipeView>
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
+
 </ContentPage>

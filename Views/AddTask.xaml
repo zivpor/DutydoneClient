@@ -5,72 +5,91 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
     Title="AddTask"
-    x:DataType="viewmodel:AddTaskViewModel">
-    <StackLayout>
+    x:DataType="viewmodel:AddTaskViewModel"
+    BackgroundColor="#F8F9FA">
+
+    <StackLayout Padding="20" Spacing="20">
+        <!-- Header Label -->
         <Label
             FontFamily="Alloha"
             FontSize="60"
             HorizontalOptions="Center"
             Text="{Binding Group.GroupName, StringFormat='Add Task To {0}'}"
-            TextColor="LightBlue" />
+            TextColor="Lavender" />
+
+        <!-- Task Name Entry Section -->
         <Grid>
-            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <!--  User Name  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Task Name:" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowNameError}"
-                        Text="{Binding NameError}" />
-                </Grid>
-                <Entry Placeholder="Type Task Name" Text="{Binding Name}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="The Deadline:" />
-                    <DatePicker Date="{Binding TaskActualDate}" />
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Task Type:" />
-                    <Picker
-                        Grid.Column="1"
-                        ItemDisplayBinding="{Binding TaskTypeName}"
-                        ItemsSource="{Binding TaskTypes}"
-                        SelectedItem="{Binding SelectedTaskType}" />
-                </Grid>
-                <Entry Placeholder="Type Task Description" Text="{Binding Description}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <Entry Placeholder="Type Task Update" Text="{Binding Upadte}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                </Grid>
-
-                <Button
-                    Command="{Binding AddTaskCommand}"
-                    IsEnabled="{Binding NotInServerCall}"
-                    Text="Create" />
-
-
-            </VerticalStackLayout>
+            <Label Grid.Column="0" Text="Task Name:" TextColor="#212121" FontSize="16" />
+            <Label
+                Grid.Column="1"
+                IsVisible="{Binding ShowNameError}"
+                Text="{Binding NameError}"
+                TextColor="Red"
+                FontSize="14" />
         </Grid>
+        <Entry
+            Placeholder="Type Task Name"
+            Text="{Binding Name}"
+            BackgroundColor="White"
+           
+            HeightRequest="45" />
+
+        <!-- Deadline Section -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="The Deadline:" TextColor="#212121" FontSize="16" />
+            <DatePicker Date="{Binding TaskActualDate}" />
+        </Grid>
+
+        <!-- Task Type Picker -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="Task Type:" TextColor="#212121" FontSize="16" />
+            <Picker
+                Grid.Column="1"
+                ItemDisplayBinding="{Binding TaskTypeName}"
+                ItemsSource="{Binding TaskTypes}"
+                SelectedItem="{Binding SelectedTaskType}" />
+        </Grid>
+
+        <!-- Task Description Entry -->
+        <Entry
+            Placeholder="Type Task Description"
+            Text="{Binding Description}"
+            BackgroundColor="White"
+            
+            HeightRequest="45" />
+
+        <!-- Task Update Entry -->
+        <Entry
+            Placeholder="Type Task Update"
+            Text="{Binding Upadte}"
+            BackgroundColor="White"
+            
+            HeightRequest="45" />
+
+        <!-- Create Task Button -->
+        <Button
+            Command="{Binding AddTaskCommand}"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Create"
+            BackgroundColor="#4CAF50"
+            TextColor="White"
+            FontSize="18"
+            HeightRequest="50"
+            CornerRadius="25" />
     </StackLayout>
 </ContentPage>

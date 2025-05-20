@@ -5,66 +5,113 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:DutydoneClient.Models"
     xmlns:viewmodel="clr-namespace:DutydoneClient.ViewModels"
+    x:DataType="viewmodel:ManageredGroupPageViewModel"
     Title="ManageredGroupPage"
-    x:DataType="viewmodel:ManageredGroupPageViewModel">
-    <Grid>
-        <VerticalStackLayout VerticalOptions="FillAndExpand">
+    BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <!-- Header and Title -->
+        <VerticalStackLayout Spacing="16">
             <Button
-                Command="{Binding AddPeopleCommand}"
-                FontSize="18"
-                HeightRequest="38"
-                HorizontalOptions="Start"
-                Text="+"
-                WidthRequest="38" />
+        Command="{Binding AddPeopleCommand}"
+        FontSize="20"
+        WidthRequest="45"
+        HeightRequest="45"
+        Text="+"
+        CornerRadius="22"
+        BackgroundColor="#3A86FF"
+        TextColor="White"
+        HorizontalOptions="Start" />
+
+            <!-- Image inside a Frame -->
+            <Frame
+        HeightRequest="90"
+        WidthRequest="90"
+        CornerRadius="45"
+        Padding="0"
+        BackgroundColor="White"
+        BorderColor="#B0BEC5"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+                <Image
+            Source="{Binding Group.FullImageUrl}"
+            Aspect="AspectFill"
+            HeightRequest="80"
+            WidthRequest="80"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+            </Frame>
 
             <Label
-                FontFamily="Alloha"
-                FontSize="30"
-                HorizontalOptions="Center"
-                Text="{Binding GroupName}"
-                TextColor="Black"
-                VerticalOptions="Center" />
-            <Label Text="The Group Tasks:" HorizontalOptions="Center" FontAttributes="Bold"/>
-            <CollectionView ItemsSource="{Binding Tasks}" 
-SelectionMode="Single"
-SelectedItem="{Binding Tasks}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Task">
-                        <StackLayout Padding="10" HorizontalOptions="Center">
+        FontFamily="Alloha"
+        FontSize="36"
+        TextColor="#212121"
+        Text="{Binding GroupName}"
+        HorizontalOptions="Center" />
 
-                            <Label Text="{Binding TaskName}" FontSize="Small" FontAttributes="Italic" FontFamily="SM"/>
-
-
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
+            <Label
+        Text="The Group Tasks:"
+        FontAttributes="Bold"
+        FontSize="18"
+        TextColor="#555"
+        HorizontalOptions="Center" />
         </VerticalStackLayout>
-        <Grid>
+        <!-- Task List -->
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Tasks}"
+            SelectionMode="Single"
+            SelectedItem="{Binding Tasks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Task">
+                    <Frame
+                        Padding="10"
+                        Margin="0,5"
+                        CornerRadius="8"
+                        BackgroundColor="#E9F5FF"
+                        BorderColor="#90CAF9">
+                        <Label
+                            Text="{Binding TaskName}"
+                            FontSize="14"
+                            FontAttributes="Italic"
+                            FontFamily="SM"
+                            TextColor="#1E1E1E" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Bottom Entry and Button -->
+        <Grid
+            Grid.Row="2"
+            ColumnSpacing="10"
+            Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
             <Frame
                 Grid.Column="0"
-                Margin="10"
-                Padding="5"
-                BorderColor="Black"
-                VerticalOptions="End">
-                <Entry />
-
-
+                Padding="10"
+                BorderColor="#B0BEC5"
+                CornerRadius="10"
+                BackgroundColor="White">
+                <Entry Placeholder="New Task..." />
             </Frame>
+
             <Button
                 Grid.Column="1"
                 Command="{Binding AddTaskCommand}"
-                FontSize="18"
-                HeightRequest="38"
                 Text="+"
-                VerticalOptions="EndAndExpand"
-                WidthRequest="38" />
+                FontSize="20"
+                WidthRequest="45"
+                HeightRequest="45"
+                CornerRadius="22"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                VerticalOptions="Center" />
         </Grid>
     </Grid>
 </ContentPage>
